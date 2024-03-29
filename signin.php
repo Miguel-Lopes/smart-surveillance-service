@@ -31,6 +31,10 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    
+    <!-- Our css -->
+    <link href="ourStyle.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -43,7 +47,24 @@
         </div>
         <!-- Spinner End -->
 
+<?php
+    session_start();
 
+    if (isset($_GET['error'])) {
+        $error_message = $_GET['error'];
+        echo "<div class='alert alert-primary alert-dismissible fade show alertMessage' role='alert'>
+                <i class='fa fa-exclamation-circle me-2'></i>".$error_message."
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+             </div>";
+    }
+    if (isset($_GET['Message'])) {
+        $error_message = $_GET['Message'];
+        echo "<div class='alert alert-success alert-dismissible fade show alertMessage' role='alert'>
+                <i class='fa fa-exclamation-circle me-2'></i>".$error_message."
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+             </div>";
+    }
+?>
         <!-- Sign In Start -->
         <div class="container-fluid">
             <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
@@ -73,7 +94,7 @@
                             <a href="">Forgot Password</a>
                         </div> -->
                         <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign In</button>
-                        <!-- <p class="text-center mb-0">Don't have an Account? <a href="">Sign Up</a></p> -->
+                        <p class="text-center mb-0">Don't have an Account? <a href="signup.php">Sign Up</a></p>
                     </form>
                     </div>
                 </div>

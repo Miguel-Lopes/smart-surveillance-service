@@ -1,7 +1,7 @@
 <?php
 
-    error_reporting(E_ALL); 
-    ini_set('display_errors', 1);
+    // error_reporting(E_ALL); 
+    // ini_set('display_errors', 1);
 
     session_start();
 
@@ -24,13 +24,19 @@
         $lines=explode("\n", $credentials);
 
         foreach ($lines as $line) {
-            list($stored_username, $stored_hash_pass) = explode(":", $line);
+            list($stored_username, ,$stored_hash_pass) = explode(":", $line);
             if ($stored_username === $username) {
                 if (password_verify($pass, $stored_hash_pass)) {
                     $_SESSION['username'] = $username;
+                    $_SESSION['last_login_timestamp'] = time();
                     header("Location: dashboard.php");
                     exit();
+                }else {
+                    $error_message = urlencode("Password Inválida!");
+                    header("Location: signin.php?error=".$error_message);
+                    exit();
                 }
+
             }
         }
 

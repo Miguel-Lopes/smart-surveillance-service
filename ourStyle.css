@@ -1,0 +1,13 @@
+/* Este é o css feito por nós(alunos do projeto) que será contabilizado para o projeto de TI. */
+
+
+.alertMessage{
+/* Classe usada para definir a posição dos "alerts" */
+
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    padding: 10px;
+    width: 25%;
+}
