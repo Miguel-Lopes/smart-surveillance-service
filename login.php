@@ -14,14 +14,14 @@
         $username = $_POST['username'];
         $pass = $_POST['password'];
 
-        if (empty($pass)) {
-            # code...
-            //devolver alert a dizer que tem de preencher todos os campos
+        if (empty($pass) || empty($username)){
+            $error_message = urlencode("Preencha todos os campos!");
+            header("Location: signin.php?error=".$error_message);
+            exit();
         }
 
         $handle = fopen("credentials/credentials.txt", "r");
         $credentials = fread($handle, 1024);
-        echo $credentials;
         $lines=explode("\n", $credentials);
 
         foreach ($lines as $line) {
@@ -33,16 +33,17 @@
                     header("Location: dashboard.php");
                     exit();
                 }else {
-                    $error_message = urlencode("Password Inválida!");
+                    $error_message = urlencode("Password Inválida!".$stored_hash_pass);
                     header("Location: signin.php?error=".$error_message);
                     exit();
                 }
-
             }
         }
-
-        //devolver um error a dizer que "Conta não encontrada!"
-        header("Location: signin.php");
+        
+        $error_message = urlencode("Conta não encontrada!");
+        header("Location: signin.php?error=".$error_message);
+        exit();
+        
        
     }
 ?>
