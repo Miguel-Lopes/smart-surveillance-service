@@ -16,6 +16,7 @@
 
         if (empty($pass)) {
             # code...
+            //devolver alert a dizer que tem de preencher todos os campos
         }
 
         $handle = fopen("credentials/credentials.txt", "r");
@@ -40,6 +41,7 @@
             }
         }
 
+        //devolver um error a dizer que "Conta não encontrada!"
         header("Location: signin.php");
        
     }

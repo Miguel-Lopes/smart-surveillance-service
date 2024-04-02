@@ -29,6 +29,9 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    
+    <!-- Our css -->
+    <link href="ourStyle.css" rel="stylesheet">
 </head>
 
 <body>
@@ -39,9 +42,18 @@
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
-        <!-- Spinner End -->
+
 <?php
     session_start();
+
+    if (isset($_GET['error'])) {
+        $error_message = $_GET['error'];
+        echo "<div class='alert alert-primary alert-dismissible fade show alertMessage' role='alert'>
+                <i class='fa fa-exclamation-circle me-2'></i>".$error_message."
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+             </div>";
+    }
+
 ?>
 
         <!-- Sign Up Start -->

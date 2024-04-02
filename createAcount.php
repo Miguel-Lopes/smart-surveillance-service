@@ -24,13 +24,13 @@ if (isset($_POST["username"]) && isset($_POST["pass"]) && isset($_POST["mail"]))
         if ($username == $stored_username) {
             fclose($handle);
             $error_message = urlencode("Username já está a ser usado por outra conta!");
-            header("Location: signup.php?Error=".$error_message);
+            header("Location: signup.php?error=".$error_message);
             exit();
         }
         if ($mail == $stored_mail) {
             fclose($handle);
             $error_message = urlencode("Email já está a ser usado por outra conta!");
-            header("Location: signup.php?Error=".$error_message);
+            header("Location: signup.php?error=".$error_message);
             exit();
         }
     }

@@ -58,9 +58,9 @@
              </div>";
     }
     if (isset($_GET['Message'])) {
-        $error_message = $_GET['Message'];
+        $message = $_GET['Message'];
         echo "<div class='alert alert-success alert-dismissible fade show alertMessage' role='alert'>
-                <i class='fa fa-exclamation-circle me-2'></i>".$error_message."
+                <i class='fa fa-exclamation-circle me-2'></i>".$message."
                 <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
              </div>";
     }
