@@ -25,10 +25,11 @@
         $lines=explode("\n", $credentials);
 
         foreach ($lines as $line) {
-            list($stored_username, ,$stored_hash_pass) = explode(":", $line);
+            list($stored_username, $stored_mail, $stored_hash_pass) = explode(":", $line);
             if ($stored_username === $username) {
                 if (password_verify($pass, $stored_hash_pass)) {
                     $_SESSION['username'] = $username;
+                    $_SESSION['mail'] = $stored_mail;
                     $_SESSION['last_login_timestamp'] = time();
                     header("Location: dashboard.php");
                     exit();
