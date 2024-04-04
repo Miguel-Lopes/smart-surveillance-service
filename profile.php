@@ -35,6 +35,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+
+
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
@@ -128,18 +131,6 @@
                                     </div>
                                 </div>
                             </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                    <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item text-center">See all message</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
@@ -179,7 +170,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="profile.php" class="dropdown-item">My Profile</a>
-                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="settings.php" class="dropdown-item">Settings</a>
                             <a href="logout.php" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
@@ -260,6 +251,21 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+
+                    <div class="row">
+                    <div class="row g-4">
+                        
+                    <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="bg-secondary rounded h-100 p-4">
+                                <h6 class="mb-4">Atividade da Conta</h6>
+                                <canvas id="salse-revenue"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                    </div>
                     </div>
 
                 </div>
