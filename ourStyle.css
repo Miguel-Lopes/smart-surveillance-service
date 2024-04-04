@@ -11,3 +11,10 @@
     padding: 10px;
     width: 25%;
 }
+
+.btnsSettings {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    float: right;
+}
