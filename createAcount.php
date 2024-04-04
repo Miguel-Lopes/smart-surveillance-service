@@ -41,6 +41,9 @@ if (isset($_POST["username"]) && isset($_POST["pass"]) && isset($_POST["mail"]))
     fwrite($handle, $newLine);
     fclose($handle);
 
+    //cria a pasta para o novo user
+    mkdir("credentials/".$username."/", 0777, true);
+
     $message = urlencode("Conta criada com sucesso!");
     header("Location: signin.php?Message=".$message);
     exit();
