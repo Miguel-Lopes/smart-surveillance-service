@@ -191,9 +191,31 @@ if (!isset($_SESSION['username'])) {
             </nav>
             <!-- Navbar End -->
 
+<?php 
+echo "<div class='alertMessage'>";
 
+if (isset($_SESSION["errorAlerts"]) && !empty($_SESSION["errorAlerts"])) {
+    foreach ($_SESSION["errorAlerts"] as $errorMessage) {
+        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+            <i class='fa fa-exclamation-circle me-2'></i>".$errorMessage."
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+         </div>";
+    }
+}
 
+if (isset($_SESSION["successAlerts"]) && !empty($_SESSION["successAlerts"])) {
+    foreach ($_SESSION["successAlerts"] as $successMessage) {
+        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+            <i class='fa fa-exclamation-circle me-2'></i>".$successMessage."
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+         </div>";
+    }
+}
+echo "</div>";
+unset($_SESSION["errorAlerts"]); //limpar as listas das mensagens dos alerts
+unset($_SESSION["successAlerts"]);
 
+?>
 
             <!-- Recent Sales Start -->
             <div class="container-fluid pt-4 px-4">
@@ -244,11 +266,11 @@ if (!isset($_SESSION['username'])) {
                                     '<h6 class="mb-4">Input Group</h6>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Username</span>
-                                    <input type="text" class="form-control" placeholder="ex: person123" aria-label="Username" aria-describedby="basic-addon1" value="' . $_SESSION["username"] . '">
+                                    <input type="text" class="form-control" name="newUsername" placeholder="ex: person123" aria-label="Username" aria-describedby="basic-addon1" value="' . $_SESSION["username"] . '">
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Email</span>
-                                    <input type="email" class="form-control" placeholder="ex: example@my.ipleiria.pt" aria-label="Username" aria-describedby="basic-addon1" value="' . $_SESSION["mail"] . '">
+                                    <input type="email" class="form-control" name="newMail" placeholder="ex: example@my.ipleiria.pt" aria-label="Username" aria-describedby="basic-addon1" value="' . $_SESSION["mail"] . '">
                                 </div>'
                                     ?>
 
