@@ -14,6 +14,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Move a imagem para a pasta de destino
         if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $target_file)) {
             $_SESSION["successAlerts"][] = "Foto de perfil atualizada!";
+
+                date_default_timezone_set('Europe/Lisbon');
+                $timestamp = time();
+                $currentDate = date('Y-m-d H:i', $timestamp);
+
+                // Linha a ser adicionada
+                $history_newLine = "\nChanged_Profile_Foto:#::#:". $currentDate;
+                // Adiciona a linha ao final do arquivo
+                file_put_contents("credentials/" . $_SESSION['username'] . "/historico.txt", $history_newLine, FILE_APPEND);
+
+            
+
         } else {
             $_SESSION["errorAlerts"][] = "Erro ao submeter foto!";
         }
@@ -58,13 +70,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //verificamos se o email e username submetidos são iguais ao do user atual,
             //e se for, ignora e não mada a mensagem de atualização 
 
-
+            
             if ($username_to_use != $_SESSION['username'] && $username_atualizado) {
                 $_SESSION["successAlerts"][] = "Username Atualizado!";
+                
+                date_default_timezone_set('Europe/Lisbon');
+                $timestamp = time();
+                $currentDate = date('Y-m-d H:i', $timestamp);
+                // Linha a ser adicionada
+                $history_newLine = "\nChangedName:#:".$_SESSION['username']." ---> ". $username_to_use . ":#:" . $currentDate;
+                // Adiciona a linha ao final do arquivo
+                file_put_contents("credentials/" . $_SESSION['username'] . "/historico.txt", $history_newLine, FILE_APPEND);
+                
             }
-
+            
             if ($mail_to_use != $_SESSION['mail'] && $mail_atualizado) {
                 $_SESSION["successAlerts"][] = "Email Atualizado!";
+                
+
+                date_default_timezone_set('Europe/Lisbon');
+                $timestamp = time();
+                $currentDate = date('Y-m-d H:i', $timestamp);
+                // Linha a ser adicionada
+                $history_newLine = "\nChangedEmail:#:".$_SESSION['mail']." ---> ". $mail_to_use . ":#:" . $currentDate;
+                // Adiciona a linha ao final do arquivo
+                file_put_contents("credentials/" . $_SESSION['username'] . "/historico.txt", $history_newLine, FILE_APPEND);
             }
 
             //volta para a primeira linha do ficheiro aberto

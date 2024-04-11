@@ -218,36 +218,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Login</td>
-                                        <td>03/04/2024 20:58</td>
+                                <?php 
+                                    //vai buscar o conteudo do ficheiro
+                                    $linhas = file("credentials/". $_SESSION["username"] ."/historico.txt");
+                                    // Obtém as últimas 5 linhas usando array_slice()
+                                    $ultimasLinhas = array_slice($linhas, -5);
+                                    //inverte a ordem para exibir as mais recentes primeiro
+                                    $ultimasLinhasInvertidas = array_reverse($ultimasLinhas);
+                                    // Exibe as últimas linhas
+                                    foreach ($ultimasLinhasInvertidas as $linha) {
+                                        list($action, $info, $time) = explode(":#:", $linha);
+                                        echo "<tr>
+                                        <th scope='row'>1</th>
+                                        <td>".$action."</td>
+                                        <td>".$time."</td>
                                         <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Disable alarms</td>
-                                        <td>03/04/2024 21:02</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Open Door 5</td>
-                                        <td>03/04/2024 21:23</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>Close Door 5</td>
-                                        <td>03/04/2024 23:56</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <td>Enable alarms</td>
-                                        <td>03/04/2024 23:58</td>
-                                        <td></td>
-                                    </tr>
+                                    </tr>" ;
+                                    }
+                                ?>
                                 </tbody>
                             </table>
                         </div>
