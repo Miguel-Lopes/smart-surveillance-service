@@ -1,5 +1,11 @@
 /* Este é o css feito por nós(alunos do projeto) que será contabilizado para o projeto de TI. */
 
+#titleRed {
+    color: red;
+    left:0px;
+    top:0px;
+    z-index: 2;
+  }
 
 .alertMessage{
 /* Classe usada para definir a posição dos "alerts" */
@@ -19,10 +25,9 @@
     float: right;
 }
 
-img.center
-{
-    position:absolute;
-    left:0px;
-    top:0px;
-    z-index:-1;
-}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }

@@ -8,13 +8,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     echo $_POST['valor'];
     
-file_put_contents("files/".$_POST['nome']."/valor.txt", $_POST['valor']);
+file_put_contents("sensores_atuadores/".$_POST['nome']."/valor.txt", $_POST['valor']);
 
-file_put_contents("files/".$_POST['nome']."/nome.txt", $_POST['nome']);
+file_put_contents("sensores_atuadores/".$_POST['nome']."/nome.txt", $_POST['nome']);
 
-file_put_contents("files/".$_POST['nome']."/data.txt", $_POST['data']);
+file_put_contents("sensores_atuadores/".$_POST['nome']."/data.txt", $_POST['data']);
 
-file_put_contents("files/".$_POST['nome']."/log.txt",$_POST['data'] ,PHP_EOL . $_POST['valor']);
+file_put_contents("sensores_atuadores/".$_POST['nome']."/log.txt",$_POST['data'] ,PHP_EOL . $_POST['valor']);
+
 
 /*
 file_put_contents("files/".$_POST['nome']."/data.txt", PHP_EOL . date("Y-m-d H:i:s"));
