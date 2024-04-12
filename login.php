@@ -21,6 +21,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     foreach ($lines as $line) {
         list($stored_username, $stored_mail, $stored_hash_pass) = explode(":", $line);
         if ($stored_username === $username) {
+
+            $stored_hash_pass = trim($stored_hash_pass);
             if (password_verify($pass, $stored_hash_pass)) {
                 $_SESSION['username'] = $username;
                 $_SESSION['mail'] = $stored_mail;
