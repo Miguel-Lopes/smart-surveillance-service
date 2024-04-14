@@ -50,7 +50,6 @@
 <body>
 
 <?php
-    print_r ( $_POST );   
 
 //----------------------------------------SENSORES----------------------------------------------    
 
@@ -147,8 +146,6 @@ $valor_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/valor.txt");
 $data_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/data.txt");
 $log_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/log.txt");
 $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
-
-print_r ( $_POST );
 
 
 ?>
