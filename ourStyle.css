@@ -24,3 +24,48 @@
     right: 0;
     float: right;
 }
+
+.buttonImportant {
+    display: inline-block;
+    border-radius: 4px;
+    border: 5px solid #000000;
+    background-color: #f42420;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    
+  
+  }
+  
+  .buttonImportant span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    opacity: 0.5;
+  }
+  
+  .buttonImportant span:after {
+    content: '!!!';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .buttonImportant:hover span {
+    padding-right: 25px;
+    opacity: 1;
+  }
+  
+  .buttonImportant:hover span:after {
+    opacity: 1;
+    right: 0;
+  }

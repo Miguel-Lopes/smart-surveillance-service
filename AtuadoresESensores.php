@@ -143,19 +143,10 @@ $nome_led_Traseiro = file_get_contents("api/sensores_atuadores/LedPortaTraseira/
 
 
 //Alarme Sonoro
-$valor_Buzzer = file_get_contents("api/sensores_atuadores/SensorBuzzer/valor.txt");
-$data_Buzzer = file_get_contents("api/sensores_atuadores/SensorBuzzer/data.txt");
-$log_Buzzer = file_get_contents("api/sensores_atuadores/SensorBuzzer/log.txt");
-$nome_Buzzer = file_get_contents("api/sensores_atuadores/SensorBuzzer/nome.txt");
-
-
-
-
-
-
-
-
-echo($nome_temperatura.": ".$valor_temperatura." ºC em ".$data_temperatura) ;
+$valor_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/valor.txt");
+$data_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/data.txt");
+$log_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/log.txt");
+$nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
 
 print_r ( $_POST );
 
@@ -182,7 +173,7 @@ print_r ( $_POST );
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i id="gradTitle">SHADOW STRIKE</h3>
+                    <h3 class="text-primary">SHADOW STRIKE</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -207,7 +198,7 @@ print_r ( $_POST );
                     <a href="index.html" class="nav-item nav-link"><i class="fa fa-video me-2"></i>Surveilance Room</a>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="AtuadoresESensores.html" class="nav-item nav-link active"><i class="fa fa-video me-2"></i>Sensors and actuators</a>
+                    <a href="AtuadoresESensores.html" class="nav-item nav-link active"><i class="fa fa-video me-2"></i>Control room</a>
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="index.html" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Accounts Panel</a>
@@ -247,7 +238,7 @@ print_r ( $_POST );
                                 <div class="d-flex align-items-center">
                                     <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                                     <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <h6 class="fw-normal mb-0">Jon send you a message</h6>
                                         <small>15 minutes ago</small>
                                     </div>
                                 </div>
@@ -317,7 +308,9 @@ print_r ( $_POST );
                 <div class="row g-4">
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-line fa-3x text-primary"></i>
+                        <img src="Icons/temperature.png" alt="Humidity"   
+                        width="50" 
+                        height="50">
                             <div class="ms-3">
                                 <p class="mb-2">Temperature: <?php echo $valor_temperatura; ?>º</p>
                                 <h6 class="mb-0">Last updated: <?php echo $data_temperatura; ?></h6>
@@ -326,16 +319,21 @@ print_r ( $_POST );
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                        <img src="Icons/humidity.png" alt="Humidity"   
+                        width="50" 
+                        height="50">
+
                             <div class="ms-3">
-                            <p class="mb-2">Humidity: <?php echo $valor_humidade; ?>º</p>
+                            <p class="mb-2">Humidity: <?php echo $valor_humidade; ?></p>
                                 <h6 class="mb-0">Last updated: <?php echo $data_humidade; ?></h6>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-area fa-3x text-primary"></i>
+                        <img src="Icons/smoke.png" alt="Humidity"   
+                        width="50" 
+                        height="50"     >
                             <div class="ms-3">
                             <p class="mb-2">Smoke: <?php echo $valor_fumo; ?></p>
                                 <h6 class="mb-0">Last updated: <?php echo $data_fumo; ?></h6>
@@ -344,7 +342,9 @@ print_r ( $_POST );
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                        <img src="Icons/movement.png" alt="Humidity"   
+                        width="50" 
+                        height="50"     >
                             <div class="ms-3">
                             <p class="mb-2">Movement: <?php echo $valor_movimento; ?></p>
                                 <h6 class="mb-0">Last updated: <?php echo $data_movimento; ?></h6>
@@ -360,15 +360,15 @@ print_r ( $_POST );
                     
              
                             <div class="d-flex mb-2">
-                                <input class="form-control bg-dark border-0" type="text" placeholder="Enter task">
-                                <button type="button" class="btn btn-primary ms-2">Add</button>
+                                <input class="form-control bg-dark border-0" type="text" placeholder="Actuators">
+                                <button type="button" class="btn btn-primary ms-2">Lockdown</button> <!--Tentar ligar ao css buttonImportant | Trancar portas ligar buzzer--> 
                             </div>
                             <div class="d-flex align-items-center border-bottom py-2">
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
                                         <span>Main door status <?php echo $valor_Porta_Principal;?> | last updated: <?php echo $data_Porta_Principal; ?></span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                        <button type="button" class="btn btn-primary ms-2">Lock/Unlock</button> <!--Fazer com que texto mude dependendo de se está trancada ou não-->
                                     </div>
                                 </div>
                             </div>
@@ -376,17 +376,8 @@ print_r ( $_POST );
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span>Back door status <?php echo $valor_Porta_Traseira;?> | last updated: <?php echo $data_Porta_Traseira; ?></span></span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-2">
-                                <input class="form-check-input m-0" type="checkbox" checked>
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span><del>Short task goes here...</del></span>
-                                        <button class="btn btn-sm text-primary"><i class="fa fa-times"></i></button>
+                                        <span>Back door status: <?php echo $valor_Porta_Traseira;?> | Last updated: <?php echo $data_Porta_Traseira; ?></span></span>
+                                        <button type="button" class="btn btn-primary ms-2">Lock/Unlock</button> <!--Fazer com que texto mude dependendo de se está trancada ou não-->
                                     </div>
                                 </div>
                             </div>
@@ -394,8 +385,17 @@ print_r ( $_POST );
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span>Short task goes here...</span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                        <span>Buzzer status: <?php echo $valor_Buzzer;?> | Last updated: <?php echo $data_Buzzer; ?></span></span>
+                                        <button type="button" class="btn btn-primary ms-2">Turn off/on</button> <!--Fazer com que texto mude dependendo de se está ligado ou não-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-2">
+                                <input class="form-check-input m-0" type="checkbox">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <span>Led main door status: <?php echo $valor_led_Principal;?> | Last updated: <?php echo $data_led_Principal; ?></span>
+                                        <button type="button" class="btn btn-primary ms-2">Turn off/on</button> <!--Fazer com que texto mude dependendo de se está ligado ou não-->
                                     </div>
                                 </div>
                             </div>
@@ -403,8 +403,8 @@ print_r ( $_POST );
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span>Short task goes here...</span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                        <span>Led backdoor status status: <?php echo $valor_led_Traseiro;?> | Last updated: <?php echo $data_led_Traseiro; ?></span>
+                                        <button type="button" class="btn btn-primary ms-2">Turn off/on</button> <!--Fazer com que texto mude dependendo de se está ligado ou não-->
                                     </div>
                                 </div>
                             </div>

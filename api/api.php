@@ -15,16 +15,13 @@ file_put_contents("sensores_atuadores/".$_POST['nome']."/nome.txt", $_POST['nome
 file_put_contents("sensores_atuadores/".$_POST['nome']."/data.txt", $_POST['data']);
 
 file_put_contents("sensores_atuadores/".$_POST['nome']."/log.txt",$_POST['data'] ,PHP_EOL . $_POST['valor']);
-
-
+http_response_code(200);
 /*
 file_put_contents("files/".$_POST['nome']."/data.txt", PHP_EOL . date("Y-m-d H:i:s"));
 
 file_put_contents("files/".$_POST['nome']."/log.txt", PHP_EOL . date("Y-m-d H:i:s"), $_POST['valor']);
 */
-}
-// SE (Recebido um GET) ENTÃO //esta linha já foi feita
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+} else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // SE (Array GET tem um elemento "nome") ENTÃO
     if (isset($_GET['nome'])) {
         // Imprime no ecrã o conteúdo do ficheiro "valor.txt" correspondente sensor pedido (nome).
@@ -42,6 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         // Imprime erro no ecrã: "faltam parametros no GET".
         echo "faltam parametros no GET";
     }
+} else {
+
+http_response_code(403)
 }
 
 
