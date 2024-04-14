@@ -348,6 +348,50 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <img src="Icons/east.png" alt="Humidity"   
+                        width="50" 
+                        height="50">
+                            <div class="ms-3">
+                                <p class="mb-2">Seismic sensor east: <?php echo $valor_SensorSismicoEste; ?></p>
+                                <h6 class="mb-0">Last updated: <?php echo $data_SensorSismicoEste; ?></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <img src="Icons/north.png" alt="Humidity"   
+                        width="50" 
+                        height="50">
+                            <div class="ms-3">
+                            <p class="mb-2">Seismic sensor north : <?php echo $valor_SensorSismicoNorte; ?></p>
+                                <h6 class="mb-0">Last updated: <?php echo $data_SensorSismicoNorte; ?></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <img src="Icons/west.png" alt="Humidity"   
+                        width="50" 
+                        height="50"     >
+                            <div class="ms-3">
+                            <p class="mb-2">Seismic sensor west: <?php echo $valor_SensorSismicoOeste; ?></p>
+                                <h6 class="mb-0">Last updated: <?php echo $data_SensorSismicoOeste; ?></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <img src="Icons/south.png" alt="Humidity"   
+                        width="50" 
+                        height="50"     >
+                            <div class="ms-3">
+                            <p class="mb-2">Seismic sensor south: <?php echo $valor_SensorSismicoSul; ?></p>
+                                <h6 class="mb-0">Last updated: <?php echo $data_SensorSismicoSul; ?></h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- Sale & Revenue End -->
