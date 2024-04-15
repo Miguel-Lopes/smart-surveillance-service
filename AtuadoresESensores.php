@@ -54,7 +54,7 @@ var imagesDoor = [
 
 var imagesBuzzer = [
     "Icons/buzzerOff.png",
-    "Icons/buzzerOn.png",
+    "Icons/buzzer.png",
 ];
 
 var imagesLed = [
