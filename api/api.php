@@ -39,9 +39,9 @@ file_put_contents("files/".$_POST['nome']."/log.txt", PHP_EOL . date("Y-m-d H:i:
         // Imprime erro no ecrã: "faltam parametros no GET".
         echo "faltam parametros no GET";
     }
-} else {
-
-http_response_code(403)
+} else{     
+http_response_code(403);
 }
+
 
 
