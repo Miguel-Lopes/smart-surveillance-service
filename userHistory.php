@@ -35,9 +35,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
-
-
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
@@ -47,6 +44,7 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="ourStyle.css">
 </head>
 
 <body>
@@ -64,7 +62,7 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
+                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i id="gradTitle">SHADOW STRIKE</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -89,7 +87,10 @@
                     <a href="index.html" class="nav-item nav-link"><i class="fa fa-video me-2"></i>Surveilance Room</a>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Accounts Painel</a>
+                    <a href="AtuadoresESensores.php" class="nav-item nav-link"><i class="fa fa-video me-2"></i>Control room</a>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="index.html" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Accounts Panel</a>
                 </div>
             </nav>
         </div>
@@ -131,12 +132,24 @@
                                     </div>
                                 </div>
                             </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">See all message</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-bell me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Notificatin</span>
+                            <span class="d-none d-lg-inline-flex">Notifications</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">
@@ -179,44 +192,18 @@
             <!-- Navbar End -->
 
 
-            
-
-
-            <!-- Recent Sales Start -->
+            <!-- Widgets Start -->
             <div class="container-fluid pt-4 px-4">
-                <div class="bg-secondary text-center rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">My Profile</h6>
-                        <a href="userHistory.php">Show All</a>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                        <?php
-                        
-                            if(file_exists("credentials/".$_SESSION["username"]."/photo.PNG")){
-                                echo "<img class='img-fluid rounded-circle mx-auto mb-4' src='credentials/".$_SESSION["username"]."/photo.PNG' alt='' style='width: 200px; height: 200px;'>";
-                            }else{
-                                echo "<img class='img-fluid rounded-circle mx-auto mb-4' src='img/default_account-removebg-preview.PNG' alt='' style='width: 200px; height: 200px;'>";
-                            }
-                        ?>
-                        <div class="mb-3">
-                        <h4 class="mb-1"><?php echo $_SESSION["username"] ?></h4>
-                        
-                         <!--//! [to do] aqui fazer um switch com cores para cada role -->
-                        <h6 class="mb-1" style="color: aqua">SuperAdmin.bat</h6>
-                        <h6 class="mb-1"><?php echo $_SESSION["mail"] ?></h6>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
+                <div class="row g-6">
+                    
+                <div class="col-sm-12">
                         <table class="table table-dark">
                                 <thead>
+                                    <tr><th>Histórico</th></tr>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Last Actions</th>
-                                        <th scope="col"></th>
-                                        <th scope="col"></th>
+                                        <th scope="col">Action</th>
+                                        <th scope="col">Info</th>
+                                        <th scope="col">time</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -224,45 +211,39 @@
                                     //vai buscar o conteudo do ficheiro
                                     $linhas = file("credentials/". $_SESSION["username"] ."/historico.txt");
                                     // Obtém as últimas 5 linhas usando array_slice()
-                                    $ultimasLinhas = array_slice($linhas, -5);
+                                    // $ultimasLinhas = array_slice($linhas, -5);
                                     //inverte a ordem para exibir as mais recentes primeiro
-                                    $ultimasLinhasInvertidas = array_reverse($ultimasLinhas);
+                                    $linhasInvertidas = array_reverse($linhas);
                                     // Exibe as últimas linhas
-                                    foreach ($ultimasLinhasInvertidas as $linha) {
+                                    foreach ($linhasInvertidas as $linha) {
                                         list($action, $info, $time) = explode(":#:", $linha);
-                                        echo "<tr>
-                                        <th scope='row'>1</th>
+
+                                        switch ($action) {
+                                            case 'Login':
+                                                    $lineColor = "#1fff00";
+                                                break;
+                                            case 'FailedLogin':
+                                                    $lineColor = "Red";
+                                                break;
+                                                
+                                                default:
+                                                    $lineColor = "White";
+                                                break;
+                                        }
+
+                                        echo "<tr style='color: ".$lineColor."'>
                                         <td>".$action."</td>
+                                        <td>".$info."</td>
                                         <td>".$time."</td>
-                                        <td></td>
                                     </tr>" ;
                                     }
                                 ?>
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-
-                    <div class="row">
-                    <div class="row g-4">
-                        
-                    <div class="col-sm-2">
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="bg-secondary rounded h-100 p-4">
-                                <h6 class="mb-4">Atividade da Conta</h6>
-                                <canvas id="salse-revenue"></canvas>
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                    </div>
-                    </div>
-
                 </div>
             </div>
-            <!-- Recent Sales End -->
-
-
+            <!-- Widgets End -->
 
 
             <!-- Footer Start -->

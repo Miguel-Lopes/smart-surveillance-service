@@ -21,15 +21,13 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     foreach ($lines as $line) {
         list($stored_username, $stored_mail, $stored_hash_pass) = explode(":", $line);
         if ($stored_username === $username) {
-
+            //retira espaços em branco e quebras de linha da $stored_hash_pass para evitar problemas ao verificar a passwaord
             $stored_hash_pass = trim($stored_hash_pass);
             if (password_verify($pass, $stored_hash_pass)) {
                 $_SESSION['username'] = $username;
                 $_SESSION['mail'] = $stored_mail;
                 $_SESSION['last_login_timestamp'] = time();
                 fclose($handle);
-
-
 
                 date_default_timezone_set('Europe/Lisbon');
                 $timestamp = time();
@@ -68,7 +66,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $error_message = urlencode("Conta não encontrada!");
     header("Location: signin.php?error=" . $error_message);
     exit();
-
 
 }
 ?>
