@@ -48,8 +48,8 @@
     
     <script>
 var imagesDoor = [
-    "Icons/doorClosed.png",
     "Icons/doorOpen.png",
+    "Icons/doorClosed.png",
 ];
 
 var imagesBuzzer = [
@@ -88,6 +88,16 @@ function changeImageBuzzer() {
 function changeImageLedMain() {
     indexLedMain = (indexLedMain + 1) % imagesLed.length;
     document.getElementById('imageToChangeLedMain').src = imagesLed[indexLedMain];
+   
+  /* 
+    if(indexLedMain % 2 == 0){ 
+    file_put_contents("sensores_atuadores/LedPortaPrincipal/valor.txt", $_POST["0"]);
+    
+}else{
+    file_put_contents("sensores_atuadores/LedPortaPrincipal/valor.txt", $_POST["1"]);
+}
+Fazer com que quando se carrega num botão os estados dos atuadores sejam alterados
+*/
 }
 
 function changeImageLedSecondary() {
@@ -265,7 +275,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                     <a href="index.html" class="nav-item nav-link"><i class="fa fa-video me-2"></i>Surveilance Room</a>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="AtuadoresESensores.html" class="nav-item nav-link active"><i class="fa fa-video me-2"></i>Control room</a>
+                    <a href="AtuadoresESensores.php" class="nav-item nav-link active"><i class="fa fa-video me-2"></i>Control room</a>
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="index.html" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Accounts Panel</a>
@@ -471,14 +481,14 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
              
                             <div class="d-flex mb-2">
                                 <input class="form-control bg-dark border-0" type="text" placeholder="Actuators">
-                                <button type="button" class="btn btn-primary ms-2">Lockdown</button> <!--Tentar ligar ao css buttonImportant | Trancar portas ligar buzzer--> 
+                                <button class="buttonImportant" onclick="alert('Facility is now under lockdown!');"><span>Lockdown</span></button> 
                             </div>
                             <div class="d-flex align-items-center border-bottom py-2">
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logMainDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoor" src="Icons/doorClosed.png" alt="Main door" width="30px" height="30px"> Main door status <?php echo $valor_Porta_Principal;?> | last updated: <?php echo $data_Porta_Principal; ?></a>
-                                        <button onclick="changeButtonText(this); changeImageDoorMain();" type="button" class="btn btn-primary ms-2">Lock</button> <!--Fazer com que texto mude dependendo de se está trancada ou não-->
+                                    <a href="logMainDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoor" src="Icons/doorOpen.png" alt="Main door" width="30px" height="30px"> Main door status <?php echo $valor_Porta_Principal;?> | last updated: <?php echo $data_Porta_Principal; ?></a>
+                                        <button onclick="changeButtonText(this); changeImageDoorMain();" type="button" class="btn btn-primary ms-2">Lock</button> 
                                     </div>
                                 </div>
                             </div>
@@ -486,8 +496,8 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logBackDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoor" src="Icons/doorClosed.png" alt="Back door" width="30px" height="30px"> Back door status <?php echo $valor_Porta_Traseira;?> | last updated: <?php echo $data_Porta_Traseira; ?></a>
-                                        <button onclick="changeButtonText(this); changeImageDoorSecondary();" type="button" class="btn btn-primary ms-2">Lock</button> <!--Fazer com que texto mude dependendo de se está trancada ou não-->
+                                    <a href="logBackDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoorSecondary" src="Icons/doorOpen.png" alt="Back door" width="30px" height="30px"> Back door status <?php echo $valor_Porta_Traseira;?> | last updated: <?php echo $data_Porta_Traseira; ?></a>
+                                        <button onclick="changeButtonText(this); changeImageDoorSecondary();" type="button" class="btn btn-primary ms-2">Lock</button> 
                                     </div>
                                 </div>
                             </div>
@@ -495,8 +505,8 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logBuzzer.php" class="nav-item nav-link active"><img id="imageToChangeBuzzer" src="Icons/buzzer.png" alt="Buzzer" width="30px" height="30px"> Buzzer status <?php echo $valor_Buzzer;?> | last updated: <?php echo $data_Buzzer; ?></a>
-                                        <button onclick="changeButtonText(this); changeImageBuzzer();" type="button" class="btn btn-primary ms-2">On</button> <!--Fazer com que texto mude dependendo de se está ligado ou não-->
+                                    <a href="logBuzzer.php" class="nav-item nav-link active"><img id="imageToChangeBuzzer" src="Icons/buzzerOff.png" alt="Buzzer" width="30px" height="30px"> Buzzer status <?php echo $valor_Buzzer;?> | last updated: <?php echo $data_Buzzer; ?></a>
+                                        <button onclick="changeButtonText(this); changeImageBuzzer();" type="button" class="btn btn-primary ms-2">On</button> 
                                     </div>
                                 </div>
                             </div>
@@ -505,7 +515,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
                                     <a href="logLedMain.php" class="nav-item nav-link active"><img id="imageToChangeLedMain" src="Icons/LedOff.png" alt="Main led" width="30px" height="30px"> Main led status status <?php echo $valor_led_Principal;?> | last updated: <?php echo $data_led_Principal; ?></a>
-                                        <button onclick="changeButtonText(this); changeImageLedMain();" type="button" class="btn btn-primary ms-2">On</button> <!--Fazer com que texto mude dependendo de se está ligado ou não-->
+                                        <button onclick="changeButtonText(this); changeImageLedMain();" type="button" class="btn btn-primary ms-2">On</button>
                                     </div>
                                 </div>
                             </div>
@@ -514,7 +524,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
                                     <a href="logLedSecondary.php" class="nav-item nav-link active"><img id="imageToChangeLedSecondary" src="Icons/LedOff.png" alt="Secondary led" width="30px" height="30px"> Back led status status <?php echo $valor_led_Traseiro;?> | last updated: <?php echo $data_led_Traseiro; ?></a>
-                                        <button onclick="changeButtonText(this); changeImageLedSecondary();" type="button" class="btn btn-primary ms-2">On</button> <!--Fazer com que texto mude dependendo de se está ligado ou não-->
+                                        <button onclick="changeButtonText(this); changeImageLedSecondary();" type="button" class="btn btn-primary ms-2">On</button> 
                                     </div>
                                 </div>
                             </div>
