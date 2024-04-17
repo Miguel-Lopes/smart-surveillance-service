@@ -96,6 +96,17 @@ function changeImageLedSecondary() {
 }
 
 
+function Lockdown() {
+    changeImageBuzzer();
+    changeImageDoorMain();
+    changeImageDoorSecondary();
+    changeImageLedMain();
+    changeImageLedSecondary();
+
+ //Fazer com que os botões mudem todos de estado   
+}
+
+
 
 function changeButtonText(button) {
     if (button.innerHTML == "Off") {
@@ -114,9 +125,6 @@ function changeButtonText(button) {
 </head>
 
 <body>
-
-
-
 
 <?php
 
@@ -218,13 +226,6 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
 
 
 ?>
-
-
-
-
-
-
-
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -272,7 +273,6 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
             </nav>
         </div>
         <!-- Sidebar End -->
-
 
         <!-- Content Start -->
         <div class="content">
@@ -378,7 +378,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                         width="50" 
                         height="50">
                             <div class="ms-3">
-                                <p class="mb-2">Temperature: <?php echo $valor_temperatura; ?>º</p>
+                                <a href="logTemperature.php" class="nav-item nav-link active">Temperature: <?php echo $valor_temperatura; ?>º</a>
                                 <h6 class="mb-0">Last updated: <?php echo $data_temperatura; ?></h6>
                             </div>
                         </div>
@@ -390,7 +390,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                         height="50">
 
                             <div class="ms-3">
-                            <p class="mb-2">Humidity: <?php echo $valor_humidade; ?></p>
+                            <a href="logHumidity.php" class="nav-item nav-link active">Humidity: <?php echo $valor_humidade; ?>%</a>
                                 <h6 class="mb-0">Last updated: <?php echo $data_humidade; ?></h6>
                             </div>
                         </div>
@@ -401,7 +401,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                         width="50" 
                         height="50"     >
                             <div class="ms-3">
-                            <p class="mb-2">Smoke: <?php echo $valor_fumo; ?></p>
+                            <a href="logSmoke.php" class="nav-item nav-link active">Smoke: <?php echo $valor_fumo; ?>%</a>
                                 <h6 class="mb-0">Last updated: <?php echo $data_fumo; ?></h6>
                             </div>
                         </div>
@@ -412,7 +412,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                         width="50" 
                         height="50"     >
                             <div class="ms-3">
-                            <p class="mb-2">Movement: <?php echo $valor_movimento; ?></p>
+                            <a href="logMovement.php" class="nav-item nav-link active">Movement: <?php echo $valor_movimento; ?></a>
                                 <h6 class="mb-0">Last updated: <?php echo $data_movimento; ?></h6>
                             </div>
                         </div>
@@ -423,7 +423,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                         width="50" 
                         height="50">
                             <div class="ms-3">
-                                <p class="mb-2">Seismic sensor east: <?php echo $valor_SensorSismicoEste; ?></p>
+                                <a href="logSeismicSensorEast.php" class="nav-item nav-link active">Seismic sensor east: <?php echo $valor_SensorSismicoEste; ?></a>
                                 <h6 class="mb-0">Last updated: <?php echo $data_SensorSismicoEste; ?></h6>
                             </div>
                         </div>
@@ -434,7 +434,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                         width="50" 
                         height="50">
                             <div class="ms-3">
-                            <p class="mb-2">Seismic sensor north : <?php echo $valor_SensorSismicoNorte; ?></p>
+                            <a href="logSeismicSensorNorth.php" class="nav-item nav-link active">Seismic sensor north: <?php echo $valor_SensorSismicoNorte; ?></a>
                                 <h6 class="mb-0">Last updated: <?php echo $data_SensorSismicoNorte; ?></h6>
                             </div>
                         </div>
@@ -445,7 +445,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                         width="50" 
                         height="50"     >
                             <div class="ms-3">
-                            <p class="mb-2">Seismic sensor west: <?php echo $valor_SensorSismicoOeste; ?></p>
+                            <a href="logSeismicSensorWest.php" class="nav-item nav-link active">Seismic sensor west: <?php echo $valor_SensorSismicoOeste; ?></a>
                                 <h6 class="mb-0">Last updated: <?php echo $data_SensorSismicoOeste; ?></h6>
                             </div>
                         </div>
@@ -456,7 +456,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                         width="50" 
                         height="50"     >
                             <div class="ms-3">
-                            <p class="mb-2">Seismic sensor south: <?php echo $valor_SensorSismicoSul; ?></p>
+                            <a href="logSeismicSensorSouth.php" class="nav-item nav-link active">Seismic sensor south: <?php echo $valor_SensorSismicoSul; ?></a>
                                 <h6 class="mb-0">Last updated: <?php echo $data_SensorSismicoSul; ?></h6>
                             </div>
                         </div>
@@ -477,7 +477,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span><img id="imageToChangeDoor" src="Icons/doorClosed.png" alt="Main door" width="30px" height="30px"> Main door status <?php echo $valor_Porta_Principal;?> | last updated: <?php echo $data_Porta_Principal; ?></span>
+                                    <a href="logMainDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoor" src="Icons/doorClosed.png" alt="Main door" width="30px" height="30px"> Main door status <?php echo $valor_Porta_Principal;?> | last updated: <?php echo $data_Porta_Principal; ?></a>
                                         <button onclick="changeButtonText(this); changeImageDoorMain();" type="button" class="btn btn-primary ms-2">Lock</button> <!--Fazer com que texto mude dependendo de se está trancada ou não-->
                                     </div>
                                 </div>
@@ -486,7 +486,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span> <img id="imageToChangeDoorSecondary" src="Icons/doorClosed.png" alt="Secondary door" width="30px" height="30px"> Back door status: <?php echo $valor_Porta_Traseira;?> | Last updated: <?php echo $data_Porta_Traseira; ?></span>
+                                    <a href="logBackDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoor" src="Icons/doorClosed.png" alt="Back door" width="30px" height="30px"> Back door status <?php echo $valor_Porta_Traseira;?> | last updated: <?php echo $data_Porta_Traseira; ?></a>
                                         <button onclick="changeButtonText(this); changeImageDoorSecondary();" type="button" class="btn btn-primary ms-2">Lock</button> <!--Fazer com que texto mude dependendo de se está trancada ou não-->
                                     </div>
                                 </div>
@@ -495,7 +495,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span><img id="imageToChangeBuzzer" src="Icons/buzzerOff.png" alt="Buzzer" width="30px" height="30px"> Buzzer status: <?php echo $valor_Buzzer;?> | Last updated: <?php echo $data_Buzzer; ?></span>
+                                    <a href="logBuzzer.php" class="nav-item nav-link active"><img id="imageToChangeBuzzer" src="Icons/buzzer.png" alt="Buzzer" width="30px" height="30px"> Buzzer status <?php echo $valor_Buzzer;?> | last updated: <?php echo $data_Buzzer; ?></a>
                                         <button onclick="changeButtonText(this); changeImageBuzzer();" type="button" class="btn btn-primary ms-2">On</button> <!--Fazer com que texto mude dependendo de se está ligado ou não-->
                                     </div>
                                 </div>
@@ -504,7 +504,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span><img id="imageToChangeLedMain" src="Icons/LedOff.png" alt="Main Led" width="30px" height="30px"> Led main door status: <?php echo $valor_led_Principal;?> | Last updated: <?php echo $data_led_Principal; ?></span>
+                                    <a href="logLedMain.php" class="nav-item nav-link active"><img id="imageToChangeLedMain" src="Icons/LedOff.png" alt="Main led" width="30px" height="30px"> Main led status status <?php echo $valor_led_Principal;?> | last updated: <?php echo $data_led_Principal; ?></a>
                                         <button onclick="changeButtonText(this); changeImageLedMain();" type="button" class="btn btn-primary ms-2">On</button> <!--Fazer com que texto mude dependendo de se está ligado ou não-->
                                     </div>
                                 </div>
@@ -513,7 +513,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span><img id="imageToChangeLedSecondary" src="Icons/LedOff.png" alt="Secondary Led" width="30px" height="30px"> Led backdoor status: <?php echo $valor_led_Traseiro;?> | Last updated: <?php echo $data_led_Traseiro; ?></span>
+                                    <a href="logLedSecondary.php" class="nav-item nav-link active"><img id="imageToChangeLedSecondary" src="Icons/LedOff.png" alt="Secondary led" width="30px" height="30px"> Back led status status <?php echo $valor_led_Traseiro;?> | last updated: <?php echo $data_led_Traseiro; ?></a>
                                         <button onclick="changeButtonText(this); changeImageLedSecondary();" type="button" class="btn btn-primary ms-2">On</button> <!--Fazer com que texto mude dependendo de se está ligado ou não-->
                                     </div>
                                 </div>
