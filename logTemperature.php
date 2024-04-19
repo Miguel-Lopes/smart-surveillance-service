@@ -44,7 +44,7 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="ourStyle.css">
+    <link href="ourStyle.css"  rel="stylesheet" >
     
 </head>
 

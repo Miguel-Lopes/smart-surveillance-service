@@ -16,6 +16,7 @@ if (!isset($_SESSION['username'])) {
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="utf-8">
     <title>DarkPan - Bootstrap 5 Admin Template</title>
@@ -45,7 +46,7 @@ if (!isset($_SESSION['username'])) {
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="ourStyle.css">
+    <link href="ourStyle.css" rel="stylesheet" >
 </head>
 
 <body>
@@ -293,10 +294,10 @@ if (!isset($_SESSION['username'])) {
                                                 </th>
                                         <td>Username123123</td>
                                         <td>
-                                        <button type="button" class="btn btn-outline-success m-2">Desbloquear</button>
-                                        <button type="button" class="btn btn-outline-warning m-2">Bloquear</button>
-                                        <button type="button" class="btn btn-outline-danger m-2">Eliminar</button>
-                                        <button type="button" class="btn btn-outline-info m-2">Histórico</button>
+                                        <button type="button" class="buttonGreen">Desbloquear</button>
+                                        <button type="button" class="buttonYellow">Bloquear</button>
+                                        <button type="button" class="buttonRed">Eliminar</button>
+                                        <button type="button" class="buttonBlue">Histórico</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -317,10 +318,10 @@ if (!isset($_SESSION['username'])) {
                                                 </th>
                                         <td>Username123123</td>
                                         <td>
-                                        <button type="button" class="btn btn-outline-success m-2">Desbloquear</button>
-                                        <button type="button" class="btn btn-outline-warning m-2">Bloquear</button>
-                                        <button type="button" class="btn btn-outline-danger m-2">Eliminar</button>
-                                        <button type="button" class="btn btn-outline-info m-2">Histórico</button>
+                                        <button type="button" class="buttonGreen">Desbloquear</button>
+                                        <button type="button" class="buttonYellow">Bloquear</button>
+                                        <button type="button" class="buttonRed">Eliminar</button>
+                                        <button type="button" class="buttonBlue">Histórico</button>
                                         </td>
                                     </tr>
                                 </tbody>
