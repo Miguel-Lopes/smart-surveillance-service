@@ -34,4 +34,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Method Not Allowed";
     http_response_code(405); // Method Not Allowed
 }
-?>

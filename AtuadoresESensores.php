@@ -46,195 +46,56 @@
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="ourStyle.css">
     
-    <script>
-var imagesDoor = [
-    "Icons/doorOpen.png",
-    "Icons/doorClosed.png",
-];
-
-var imagesBuzzer = [
-    "Icons/buzzerOff.png",
-    "Icons/buzzer.png",
-];
-
-var imagesLed = [
-    "Icons/LedOff.png",
-    "Icons/LedOn.png",    
-];
-
-
-var indexDoorMain = 0;
-var indexDoorSecondary = 0;
-var indexBuzzer = 0;
-var indexLedMain = 0;
-var indexLedSecondary = 0;
-
-
-function changeImageDoorMain() {
-    indexDoorMain = (indexDoorMain + 1) % imagesDoor.length;
-    document.getElementById('imageToChangeDoor').src = imagesDoor[indexDoorMain];
-}
-
-function changeImageDoorSecondary() {
-    indexDoorSecondary = (indexDoorSecondary + 1) % imagesDoor.length;
-    document.getElementById('imageToChangeDoorSecondary').src = imagesDoor[indexDoorSecondary];
-}
-
-function changeImageBuzzer() {
-    indexBuzzer = (indexBuzzer + 1) % imagesBuzzer.length;
-    document.getElementById('imageToChangeBuzzer').src = imagesBuzzer[indexBuzzer];
-}
-
-function changeImageLedMain() {
-    indexLedMain = (indexLedMain + 1) % imagesLed.length;
-    document.getElementById('imageToChangeLedMain').src = imagesLed[indexLedMain];
    
-  /* 
-    if(indexLedMain % 2 == 0){ 
-    file_put_contents("sensores_atuadores/LedPortaPrincipal/valor.txt", $_POST["0"]);
-    
-}else{
-    file_put_contents("sensores_atuadores/LedPortaPrincipal/valor.txt", $_POST["1"]);
-}
-Fazer com que quando se carrega num botão os estados dos atuadores sejam alterados
-*/
-}
-
-function changeImageLedSecondary() {
-    indexLedSecondary = (indexLedSecondary + 1) % imagesLed.length;
-    document.getElementById('imageToChangeLedSecondary').src = imagesLed[indexLedSecondary];
-}
-
-
-function Lockdown() {
-    changeImageBuzzer();
-    changeImageDoorMain();
-    changeImageDoorSecondary();
-    changeImageLedMain();
-    changeImageLedSecondary();
-
- //Fazer com que os botões mudem todos de estado   
-}
-
-
-
-function changeButtonText(button) {
-    if (button.innerHTML == "Off") {
-        button.innerHTML = "On";
-    } else if(button.innerHTML == "On") {
-        button.innerHTML = "Off";
-    } else if(button.innerHTML == "Lock") {
-        button.innerHTML = "Unlock";
-    }else {
-        button.innerHTML = "Lock";
-    }
-
-}
-</script>
-
 </head>
 
 <body>
-
 <?php
 
-//----------------------------------------SENSORES----------------------------------------------    
+//----------------------------------------SENSORES & ATUADORES----------------------------------------------
 
-//Sensor de temperatura
-$valor_temperatura = file_get_contents("api/sensores_atuadores/SensorTemperatura/valor.txt");
-$data_temperatura = file_get_contents("api/sensores_atuadores/SensorTemperatura/data.txt");
-$log_temperatura = file_get_contents("api/sensores_atuadores/SensorTemperatura/log.txt");
-$nome_temperatura = file_get_contents("api/sensores_atuadores/SensorTemperatura/nome.txt");
+/**
+ * Fetches data for a given sensor or actuator from specific files.
+ *
+ * @param string $devicePath The base path for the device's data files.
+ * @return array Contains the value, data, log, and name of the device.
+ */
+function fetchDeviceData($devicePath) {
+    $data = [];
+    $data['valor'] = file_get_contents($devicePath . "/valor.txt");
+    $data['data'] = file_get_contents($devicePath . "/data.txt");
+    $data['log'] = file_get_contents($devicePath . "/log.txt");
+    $data['nome'] = file_get_contents($devicePath . "/nome.txt");
 
+    return $data;
+}
 
-//Sensor de humidade
-$valor_humidade = file_get_contents("api/sensores_atuadores/SensorHumidade/valor.txt");
-$data_humidade = file_get_contents("api/sensores_atuadores/SensorHumidade/data.txt");
-$log_humidade = file_get_contents("api/sensores_atuadores/SensorHumidade/log.txt");
-$nome_humidade = file_get_contents("api/sensores_atuadores/SensorHumidade/nome.txt");
+// Device base paths
+$basePaths = [
+    "SensorTemperatura" => "api/sensores_atuadores/SensorTemperatura",
+    "SensorHumidade" => "api/sensores_atuadores/SensorHumidade",
+    "SensorFumo" => "api/sensores_atuadores/SensorFumo",
+    "SensorMovimento" => "api/sensores_atuadores/SensorMovimento",
+    "SensorPortaPrincipal" => "api/sensores_atuadores/SensorPortaPrincipal",
+    "SensorPortaTraseira" => "api/sensores_atuadores/SensorPortaTraseira",
+    "SensorSismicoSul" => "api/sensores_atuadores/SensorSismicoSul",
+    "SensorSismicoNorte" => "api/sensores_atuadores/SensorSismicoNorte",
+    "SensorSismicoOeste" => "api/sensores_atuadores/SensorSismicoOeste",
+    "SensorSismicoEste" => "api/sensores_atuadores/SensorSismicoEste",
+    "PortaPrincipal" => "api/sensores_atuadores/PortaPrincipal",
+    "PortaTraseira" => "api/sensores_atuadores/PortaTraseira",
+    "LedPortaPrincipal" => "api/sensores_atuadores/LedPortaPrincipal",
+    "LedPortaTraseira" => "api/sensores_atuadores/LedPortaTraseira",
+    "Buzzer" => "api/sensores_atuadores/Buzzer"
+];
 
+// Fetch all devices data
+$devicesData = [];
+foreach ($basePaths as $name => $path) {
+    $devicesData[$name] = fetchDeviceData($path);
+}
 
-//Sensor de fumo
-$valor_fumo = file_get_contents("api/sensores_atuadores/SensorFumo/valor.txt");
-$data_fumo = file_get_contents("api/sensores_atuadores/SensorFumo/Data.txt");
-$log_fumo = file_get_contents("api/sensores_atuadores/SensorFumo/log.txt");
-$nome_fumo = file_get_contents("api/sensores_atuadores/SensorFumo/nome.txt");
-
-
-//Sensor de movimento
-$valor_movimento = file_get_contents("api/sensores_atuadores/SensorMovimento/valor.txt");
-$data_movimento = file_get_contents("api/sensores_atuadores/SensorMovimento/data.txt");
-$log_movimento = file_get_contents("api/sensores_atuadores/SensorMovimento/log.txt");
-$nome_movimento = file_get_contents("api/sensores_atuadores/SensorMovimento/nome.txt");
-
-
-//Sensores das portas (Para confirmar se estão abertas ou fechadas)
-$valor_sensor_Porta_Principal = file_get_contents("api/sensores_atuadores/SensorPortaPrincipal/valor.txt");
-$data_sensor_Porta_Principal = file_get_contents("api/sensores_atuadores/SensorPortaPrincipal/data.txt");
-$log_sensor_Porta_Principal = file_get_contents("api/sensores_atuadores/SensorPortaPrincipal/log.txt");
-$nome_sensor_Porta_Principal = file_get_contents("api/sensores_atuadores/SensorPortaPrincipal/nome.txt");
-
-$valor_sensor_Porta_Traseira = file_get_contents("api/sensores_atuadores/SensorPortaTraseira/valor.txt");
-$data_sensor_Porta_Traseira = file_get_contents("api/sensores_atuadores/SensorPortaTraseira/data.txt");
-$log_sensor_Porta_Traseira = file_get_contents("api/sensores_atuadores/SensorPortaTraseira/log.txt");
-$nome_sensor_Porta_Traseira = file_get_contents("api/sensores_atuadores/SensorPortaTraseira/nome.txt");
-
-
-//Sensores Sismicos
-$valor_SensorSismicoSul = file_get_contents("api/sensores_atuadores/SensorSismicoSul/valor.txt");
-$data_SensorSismicoSul = file_get_contents("api/sensores_atuadores/SensorSismicoSul/data.txt");
-$log_SensorSismicoSul = file_get_contents("api/sensores_atuadores/SensorSismicoSul/log.txt");
-$nome_SensorSismicoSul = file_get_contents("api/sensores_atuadores/SensorSismicoSul/nome.txt");
-
-$valor_SensorSismicoNorte = file_get_contents("api/sensores_atuadores/SensorSismicoNorte/valor.txt");
-$data_SensorSismicoNorte = file_get_contents("api/sensores_atuadores/SensorSismicoNorte/data.txt");
-$log_SensorSismicoNorte = file_get_contents("api/sensores_atuadores/SensorSismicoNorte/log.txt");
-$nome_SensorSismicoNorte = file_get_contents("api/sensores_atuadores/SensorSismicoNorte/nome.txt");
-
-$valor_SensorSismicoOeste = file_get_contents("api/sensores_atuadores/SensorSismicoOeste/valor.txt");
-$data_SensorSismicoOeste = file_get_contents("api/sensores_atuadores/SensorSismicoOeste/data.txt");
-$log_SensorSismicoOeste = file_get_contents("api/sensores_atuadores/SensorSismicoOeste/log.txt");
-$nome_SensorSismicoOeste = file_get_contents("api/sensores_atuadores/SensorSismicoOeste/nome.txt");
-
-$valor_SensorSismicoEste = file_get_contents("api/sensores_atuadores/SensorSismicoEste/valor.txt");
-$data_SensorSismicoEste = file_get_contents("api/sensores_atuadores/SensorSismicoEste/data.txt");
-$log_SensorSismicoEste = file_get_contents("api/sensores_atuadores/SensorSismicoEste/log.txt");
-$nome_SensorSismicoEste = file_get_contents("api/sensores_atuadores/SensorSismicoEste/nome.txt");
-
-
-
-//----------------------------------------ATUADORES----------------------------------------------  
-//Atuadores para abrir e fechar as portas
-$valor_Porta_Principal = file_get_contents("api/sensores_atuadores/PortaPrincipal/valor.txt");
-$data_Porta_Principal = file_get_contents("api/sensores_atuadores/PortaPrincipal/data.txt");
-$log_Porta_Principal = file_get_contents("api/sensores_atuadores/PortaPrincipal/log.txt");
-$nome_Porta_Principal = file_get_contents("api/sensores_atuadores/PortaPrincipal/nome.txt");
-
-$valor_Porta_Traseira = file_get_contents("api/sensores_atuadores/PortaTraseira/valor.txt");
-$data_Porta_Traseira = file_get_contents("api/sensores_atuadores/PortaTraseira/data.txt");
-$log_Porta_Traseira = file_get_contents("api/sensores_atuadores/PortaTraseira/log.txt");
-$nome_Porta_Traseira = file_get_contents("api/sensores_atuadores/PortaTraseira/nome.txt");
-
-
-//Leds das portas
-$valor_led_Principal = file_get_contents("api/sensores_atuadores/LedPortaPrincipal/valor.txt");
-$data_led_Principal = file_get_contents("api/sensores_atuadores/LedPortaPrincipal/data.txt");
-$log_led_Principal = file_get_contents("api/sensores_atuadores/LedPortaPrincipal/log.txt");
-$nome_led_Principal = file_get_contents("api/sensores_atuadores/LedPortaPrincipal/nome.txt");
-
-$valor_led_Traseiro = file_get_contents("api/sensores_atuadores/LedPortaTraseira/valor.txt");
-$data_led_Traseiro = file_get_contents("api/sensores_atuadores/LedPortaTraseira/data.txt");
-$log_led_Traseiro = file_get_contents("api/sensores_atuadores/LedPortaTraseira/log.txt");
-$nome_led_Traseiro = file_get_contents("api/sensores_atuadores/LedPortaTraseira/nome.txt");
-
-
-//Alarme Sonoro
-$valor_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/valor.txt");
-$data_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/data.txt");
-$log_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/log.txt");
-$nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
-
-
+// Now $devicesData contains all the information about the sensors and actuators.
 ?>
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Spinner Start -->
@@ -388,8 +249,8 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                         width="50" 
                         height="50">
                             <div class="ms-3">
-                                <a href="logTemperature.php" class="nav-item nav-link active">Temperature: <?php echo $valor_temperatura; ?>º</a>
-                                <h6 class="mb-0">Last updated: <?php echo $data_temperatura; ?></h6>
+                                <a href="logTemperature.php" class="nav-item nav-link active">Temperature: <?php echo $devicesData['SensorTemperatura']['valor']; ?>º</a>
+                                <h6 class="mb-0">Last updated:  <?php echo $devicesData['SensorTemperatura']['data']; ?></h6>
                             </div>
                         </div>
                     </div>
@@ -400,8 +261,8 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                         height="50">
 
                             <div class="ms-3">
-                            <a href="logHumidity.php" class="nav-item nav-link active">Humidity: <?php echo $valor_humidade; ?>%</a>
-                                <h6 class="mb-0">Last updated: <?php echo $data_humidade; ?></h6>
+                            <a href="logHumidity.php" class="nav-item nav-link active">Humidity: <?php echo $devicesData['SensorHumidade']['valor']; ?>%</a>
+                                <h6 class="mb-0">Last updated: <?php echo $devicesData['SensorHumidade']['data']; ?></h6>
                             </div>
                         </div>
                     </div>
@@ -411,8 +272,8 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                         width="50" 
                         height="50"     >
                             <div class="ms-3">
-                            <a href="logSmoke.php" class="nav-item nav-link active">Smoke: <?php echo $valor_fumo; ?>%</a>
-                                <h6 class="mb-0">Last updated: <?php echo $data_fumo; ?></h6>
+                            <a href="logSmoke.php" class="nav-item nav-link active">Smoke: <?php echo $devicesData['SensorFumo']['valor']; ?>%</a>
+                                <h6 class="mb-0">Last updated: <?php echo $devicesData['SensorFumo']['data']; ?></h6>
                             </div>
                         </div>
                     </div>
@@ -422,8 +283,8 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                         width="50" 
                         height="50"     >
                             <div class="ms-3">
-                            <a href="logMovement.php" class="nav-item nav-link active">Movement: <?php echo $valor_movimento; ?></a>
-                                <h6 class="mb-0">Last updated: <?php echo $data_movimento; ?></h6>
+                            <a href="logMovement.php" class="nav-item nav-link active">Movement: <?php echo $devicesData['SensorMovimento']['valor']; ?></a>
+                                <h6 class="mb-0">Last updated: <?php echo $devicesData['SensorMovimento']['data']; ?></h6>
                             </div>
                         </div>
                     </div>
@@ -433,8 +294,8 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                         width="50" 
                         height="50">
                             <div class="ms-3">
-                                <a href="logSeismicSensorEast.php" class="nav-item nav-link active">Seismic sensor east: <?php echo $valor_SensorSismicoEste; ?></a>
-                                <h6 class="mb-0">Last updated: <?php echo $data_SensorSismicoEste; ?></h6>
+                                <a href="logSeismicSensorEast.php" class="nav-item nav-link active">Seismic sensor east: <?php echo $devicesData['SensorSismicoEste']['valor']; ?></a>
+                                <h6 class="mb-0">Last updated: <?php echo $devicesData['SensorSismicoEste']['data']; ?></h6>
                             </div>
                         </div>
                     </div>
@@ -444,8 +305,8 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                         width="50" 
                         height="50">
                             <div class="ms-3">
-                            <a href="logSeismicSensorNorth.php" class="nav-item nav-link active">Seismic sensor north: <?php echo $valor_SensorSismicoNorte; ?></a>
-                                <h6 class="mb-0">Last updated: <?php echo $data_SensorSismicoNorte; ?></h6>
+                            <a href="logSeismicSensorNorth.php" class="nav-item nav-link active">Seismic sensor north: <?php echo $devicesData['SensorSismicoNorte']['valor']; ?></a>
+                                <h6 class="mb-0">Last updated: <?php echo $devicesData['SensorSismicoNorte']['data']; ?></h6>
                             </div>
                         </div>
                     </div>
@@ -455,8 +316,8 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                         width="50" 
                         height="50"     >
                             <div class="ms-3">
-                            <a href="logSeismicSensorWest.php" class="nav-item nav-link active">Seismic sensor west: <?php echo $valor_SensorSismicoOeste; ?></a>
-                                <h6 class="mb-0">Last updated: <?php echo $data_SensorSismicoOeste; ?></h6>
+                            <a href="logSeismicSensorWest.php" class="nav-item nav-link active">Seismic sensor west: <?php echo $devicesData['SensorSismicoOeste']['valor']; ?></a>
+                                <h6 class="mb-0">Last updated: <?php echo $devicesData['SensorSismicoNorte']['data']; ?></h6>
                             </div>
                         </div>
                     </div>
@@ -466,8 +327,8 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                         width="50" 
                         height="50"     >
                             <div class="ms-3">
-                            <a href="logSeismicSensorSouth.php" class="nav-item nav-link active">Seismic sensor south: <?php echo $valor_SensorSismicoSul; ?></a>
-                                <h6 class="mb-0">Last updated: <?php echo $data_SensorSismicoSul; ?></h6>
+                            <a href="logSeismicSensorSouth.php" class="nav-item nav-link active">Seismic sensor south: <?php echo $devicesData['SensorSismicoSul']['valor']; ?></a>
+                                <h6 class="mb-0">Last updated: <?php echo $devicesData['SensorSismicoSul']['data']; ?></h6>
                             </div>
                         </div>
                     </div>
@@ -487,8 +348,8 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logMainDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoor" src="Icons/doorOpen.png" alt="Main door" width="30px" height="30px"> Main door status <?php echo $valor_Porta_Principal;?> | last updated: <?php echo $data_Porta_Principal; ?></a>
-                                        <button onclick="changeButtonText(this); changeImageDoorMain();" type="button" class="btn btn-primary ms-2">Lock</button> 
+                                    <a href="logMainDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoor" src="Icons/doorOpen.png" alt="Main door" width="30px" height="30px"> Main door status: <?php echo $devicesData['PortaPrincipal']['valor']; ?> | last updated: <?php echo $devicesData['PortaPrincipal']['data']; ?></a>
+                                        <button onclick="changeButtonText(this); changeImage('imageToChangeDoor', 'doorMain');" type="button" class="btn btn-primary ms-2">Lock</button> 
                                     </div>
                                 </div>
                             </div>
@@ -496,8 +357,8 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logBackDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoorSecondary" src="Icons/doorOpen.png" alt="Back door" width="30px" height="30px"> Back door status <?php echo $valor_Porta_Traseira;?> | last updated: <?php echo $data_Porta_Traseira; ?></a>
-                                        <button onclick="changeButtonText(this); changeImageDoorSecondary();" type="button" class="btn btn-primary ms-2">Lock</button> 
+                                    <a href="logBackDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoorSecondary" src="Icons/doorClosed.png" alt="Back door" width="30px" height="30px"> Back door status: <?php echo $devicesData['PortaTraseira']['valor']; ?> | last updated: <?php echo $devicesData['PortaTraseira']['data']; ?></a>
+                                        <button onclick="changeButtonText(this); changeImage('imageToChangeDoorSecondary', 'doorSecondary');" type="button" class="btn btn-primary ms-2">Lock</button> 
                                     </div>
                                 </div>
                             </div>
@@ -505,8 +366,8 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logBuzzer.php" class="nav-item nav-link active"><img id="imageToChangeBuzzer" src="Icons/buzzerOff.png" alt="Buzzer" width="30px" height="30px"> Buzzer status <?php echo $valor_Buzzer;?> | last updated: <?php echo $data_Buzzer; ?></a>
-                                        <button onclick="changeButtonText(this); changeImageBuzzer();" type="button" class="btn btn-primary ms-2">On</button> 
+                                    <a href="logBuzzer.php" class="nav-item nav-link active"><img id="imageToChangeBuzzer" src="Icons/buzzerOff.png" alt="Buzzer" width="30px" height="30px"> Buzzer status: <?php echo $devicesData['Buzzer']['valor']; ?> | last updated: <?php echo $devicesData['Buzzer']['data']; ?></a>
+                                        <button onclick="changeButtonText(this); changeImage('imageToChangeBuzzer', 'buzzer');" type="button" class="btn btn-primary ms-2">On</button> 
                                     </div>
                                 </div>
                             </div>
@@ -514,17 +375,17 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logLedMain.php" class="nav-item nav-link active"><img id="imageToChangeLedMain" src="Icons/LedOff.png" alt="Main led" width="30px" height="30px"> Main led status status <?php echo $valor_led_Principal;?> | last updated: <?php echo $data_led_Principal; ?></a>
-                                        <button onclick="changeButtonText(this); changeImageLedMain();" type="button" class="btn btn-primary ms-2">On</button>
-                                    </div>
+                                    <a href="logLedMain.php" class="nav-item nav-link active"><img id="imageToChangeLedMain" src="Icons/LedOff.png" alt="Main led" width="30px" height="30px"> Main led status status: <?php echo $devicesData['LedPortaPrincipal']['valor']; ?> | last updated: <?php echo $devicesData['LedPortaPrincipal']['data']; ?></a>
+                                        <button onclick="changeButtonText(this); changeImage('imageToChangeLedMain', 'ledMain');" type="button" class="btn btn-primary ms-2">On</button>
+                                    </div>  
                                 </div>
                             </div>
                             <div class="d-flex align-items-center pt-2">
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logLedSecondary.php" class="nav-item nav-link active"><img id="imageToChangeLedSecondary" src="Icons/LedOff.png" alt="Secondary led" width="30px" height="30px"> Back led status status <?php echo $valor_led_Traseiro;?> | last updated: <?php echo $data_led_Traseiro; ?></a>
-                                        <button onclick="changeButtonText(this); changeImageLedSecondary();" type="button" class="btn btn-primary ms-2">On</button> 
+                                    <a href="logLedSecondary.php" class="nav-item nav-link active"><img id="imageToChangeLedSecondary" src="Icons/LedOff.png" alt="Secondary led" width="30px" height="30px"> Back led status status <?php echo $devicesData['LedPortaTraseira']['valor']; ?> | last updated: <?php echo $devicesData['LedPortaTraseira']['data']; ?></a>
+                                        <button onclick="changeButtonText(this); changeImage('imageToChangeLedSecondary', 'ledSecondary');" type="button" class="btn btn-primary ms-2">On</button> 
                                     </div>
                                 </div>
                             </div>
@@ -571,7 +432,57 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js"></script> 
+    
+    <!-- Function to make icons change when button is pressed-->
+    <script>
+var images = {
+    doorMain: ["Icons/doorOpen.png", "Icons/doorClosed.png"],
+    doorSecondary: [ "Icons/doorClosed.png", "Icons/doorOpen.png"],
+    buzzer: ["Icons/buzzerOff.png", "Icons/buzzer.png"],
+    ledMain: ["Icons/LedOff.png", "Icons/LedOn.png"],
+    ledSecondary: ["Icons/LedOff.png", "Icons/LedOn.png"],
+};
+
+var indices = {
+    doorMain: 0,
+    doorSecondary: 0,
+    buzzer: 0,
+    ledMain: 0,
+    ledSecondary: 0
+};
+
+function changeImage(elementId, type) {
+    indices[type] = (indices[type] + 1) % images[type].length;
+    document.getElementById(elementId).src = images[type][indices[type]];
+}
+
+function Lockdown() {
+    changeImageBuzzer();
+    changeImageDoorMain();
+    changeImageDoorSecondary();
+    changeImageLedMain();
+    changeImageLedSecondary();
+
+ //Fazer com que os botões mudem todos de estado   
+}
+
+
+
+function changeButtonText(button) {
+    if (button.innerHTML == "Off") {
+        button.innerHTML = "On";
+    } else if(button.innerHTML == "On") {
+        button.innerHTML = "Off";
+    } else if(button.innerHTML == "Lock") {
+        button.innerHTML = "Unlock";
+    }else {
+        button.innerHTML = "Lock";
+    }
+
+}
+</script>
+
 </body>
 
 </html>

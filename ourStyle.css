@@ -6,9 +6,10 @@
     top:0px;
 
   }
-
-.alertMessage{
+  
 /* Classe usada para definir a posição dos "alerts" */
+.alertMessage{
+
 
     position: fixed;
     top: 20px;
@@ -24,7 +25,7 @@
     right: 0;
     float: right;
 }
-
+/* Botão lockdown*/
 .buttonImportant {
     display: inline-block;
     border-radius: 4px;
@@ -134,12 +135,13 @@
   .buttonYellow:hover {background-color: #c5980e;
     color: white;}
   
+    /*Animação para a águia */
 
   .movingIcon {
     visibility: hidden;
     position: absolute;
-    left: -150px; /* Start off-screen */
-    animation:left-right 6s forwards; /* 'forwards' keeps it at final position */
+    left: -150px; /* Começa fora do ecrã */
+    animation:left-right 6s forwards; /* "Forwards" mantem o icon na posição final na maior parte dos browsers */
   }
 
   @keyframes left-right {
@@ -152,5 +154,6 @@
   body, html {
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Prevents horizontal scroll */
+    overflow-x: hidden; /* Impede scroll horizontal */
 }
+
