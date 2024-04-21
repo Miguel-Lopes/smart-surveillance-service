@@ -46,7 +46,9 @@ if (!isset($_SESSION['username'])) {
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <link href="ourStyle.css" rel="stylesheet" >
+    <link rel="stylesheet" href="ourStyle.css">
+
+    <script src="https://kit.fontawesome.com/6f6eae0546.js" crossorigin="anonymous"></script>
 </head>
 
 <body>

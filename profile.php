@@ -47,6 +47,8 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/6f6eae0546.js" crossorigin="anonymous"></script>
 </head>
 
 <body>

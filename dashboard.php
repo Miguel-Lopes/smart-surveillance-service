@@ -44,7 +44,9 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <link href="ourStyle.css"  rel="stylesheet">
+    <link rel="stylesheet" href="ourStyle.css">
+
+    <script src="https://kit.fontawesome.com/6f6eae0546.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -87,7 +89,10 @@
                     <a href="index.html" class="nav-item nav-link"><i class="fa fa-video me-2"></i>Surveilance Room</a>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="AtuadoresESensores.php" class="nav-item nav-link"><i class="fa fa-video me-2"></i>Control room</a>
+                <!-- <i class="fa-solid fa-joystick"></i> -->
+                <!-- <i class="fa-solid fa-tower-cell"></i> -->
+                <i class="fa-solid fa-tower-broadcast fa-bounce"></i>
+                    <a href="AtuadoresESensores.php" class="nav-item nav-link"><i class="fa-solid fa-tower-broadcast fa-bounce me-2"></i>Control room</a>
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="accountsPanel.php" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Accounts Panel</a>
