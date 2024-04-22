@@ -40,7 +40,7 @@
 
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -66,7 +66,7 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
+                <h3 class="text-primary">SHADOW STRIKE</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -91,7 +91,10 @@
                     <a href="index.html" class="nav-item nav-link"><i class="fa fa-video me-2"></i>Surveilance Room</a>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Accounts Painel</a>
+                    <a href="AtuadoresESensores.php" class="nav-item nav-link"><i class="fa-solid fa-tower-broadcast me-2"></i>Control room</a>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="accountsPanel.php" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Accounts Panel</a>
                 </div>
             </nav>
         </div>
@@ -102,9 +105,6 @@
         <div class="content">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
-                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-                    <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
-                </a>
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
@@ -289,6 +289,7 @@
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
     </div>
 
     <!-- JavaScript Libraries -->

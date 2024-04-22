@@ -37,7 +37,7 @@
 
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -114,9 +114,6 @@ $nome_temperatura = file_get_contents("api/sensores_atuadores/SensorTemperatura/
         <div class="content">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
-                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-                    <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
-                </a>
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
@@ -227,9 +224,13 @@ $nome_temperatura = file_get_contents("api/sensores_atuadores/SensorTemperatura/
                 <div class="row g-6">
                     
                 <div class="col-sm-12">
+                    <h4>Log Temperatura</h4>
                         <table class="table table-dark">
                                 <thead>
-                                    <tr><th>Log temperature</th></tr>
+                                    <tr>
+                                        <th>Valor</th>
+                                        <th>Data</th>
+                                </tr>
                                                </thead>
                                 <tbody>
                                 <?php 
@@ -241,11 +242,11 @@ $nome_temperatura = file_get_contents("api/sensores_atuadores/SensorTemperatura/
                                     $linhasInvertidas = array_reverse($linhas);
                                     // Exibe as últimas linhas
                                     foreach ($linhasInvertidas as $linha) {
-                                        list($data_temperatura, $valor_temperatura) = explode(":#:", $linha);
+                                        list($valor_temperatura, $data_temperatura) = explode(":#:", $linha);
 
                                         echo "<tr>
+                                        <td>".$valor_temperatura."ºC</td>
                                         <td>".$data_temperatura."</td>
-                                        <td>".$valor_temperatura."</td>
                                              </tr>" ;
                                     }
                                 ?>

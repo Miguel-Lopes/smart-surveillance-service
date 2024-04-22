@@ -39,7 +39,7 @@ if (!isset($_SESSION['username'])) {
 
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -72,34 +72,30 @@ if (!isset($_SESSION['username'])) {
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
                         <?php
-                        if (file_exists("credentials/" . $_SESSION["username"] . "/photo.PNG")) {
-                            echo "<img class='rounded-circle' src='credentials/" . $_SESSION["username"] . "/photo.PNG' alt='' style='width: 40px; height: 40px;'>";
-                        } else {
-                            echo "<img class='rounded-circle' src='img/default_account-removebg-preview.PNG' alt='' style='width: 40px; height: 40px;'>";
-                        }
+                            if(file_exists("credentials/".$_SESSION["username"]."/photo.PNG")){
+                                echo "<img class='rounded-circle' src='credentials/".$_SESSION["username"]."/photo.PNG' alt='' style='width: 40px; height: 40px;'>";
+                            }else{
+                                echo "<img class='rounded-circle' src='img/default_account-removebg-preview.PNG' alt='' style='width: 40px; height: 40px;'>";
+                            }
                         ?>
-                        <div
-                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
-                        </div>
+                    <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0"><?php echo $_SESSION['username'] ?></h6>
+                        <h6 class="mb-0"><?php echo $_SESSION['username']?></h6>
                         <span>Admin</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="dashboard.php" class="nav-item nav-link"><i
-                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="dashboard.php" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="index.html" class="nav-item nav-link"><i class="fa fa-video me-2"></i>Surveilance Room</a>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="AtuadoresESensores.php" class="nav-item nav-link"><i class="fa fa-video me-2"></i>Control
-                        room</a>
+                    <a href="AtuadoresESensores.php" class="nav-item nav-link"><i class="fa-solid fa-tower-broadcast me-2"></i>Control room</a>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="accountsPanel.php" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Accounts Panel</a>
+                    <a href="accountsPanel.php" class="nav-item nav-link active"><i class="fa fa-user me-2"></i>Accounts Panel</a>
                 </div>
             </nav>
         </div>
@@ -110,9 +106,6 @@ if (!isset($_SESSION['username'])) {
         <div class="content">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
-                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-                    <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
-                </a>
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
@@ -237,6 +230,7 @@ if (!isset($_SESSION['username'])) {
                                                             class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
                                                         </div>
                                                     </div>
+                                                    </div>
                                                 
                                                 
                                                 
@@ -256,6 +250,7 @@ if (!isset($_SESSION['username'])) {
                                                         <div
                                                             class="bg-danger rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
                                                         </div>
+                                                    </div>
                                                     </div>
                                                 
                                                 
@@ -290,6 +285,7 @@ if (!isset($_SESSION['username'])) {
                                                             class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
                                                         </div>
                                                     </div>
+                                                    </div>
                                                 
                                                 
                                                 
@@ -314,8 +310,7 @@ if (!isset($_SESSION['username'])) {
                                                             class="bg-danger rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
                                                         </div>
                                                     </div>
-                                                
-                                                
+                                                    </div>
                                                 
                                                 </th>
                                         <td>Username123123</td>

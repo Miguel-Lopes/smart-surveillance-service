@@ -1,6 +1,5 @@
 <?php
 session_start();
-// session_destroy();
 
 if (!isset($_SESSION['username'])) {
     header("Location: signin.php");
@@ -36,12 +35,9 @@ if (!isset($_SESSION['username'])) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
-
-
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -65,12 +61,11 @@ if (!isset($_SESSION['username'])) {
         </div>
         <!-- Spinner End -->
 
-
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
+                    <h3 class="text-primary">SHADOW STRIKE</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -86,9 +81,7 @@ if (!isset($_SESSION['username'])) {
                         </div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">
-                            <?php echo $_SESSION['username'] ?>
-                        </h6>
+                        <h6 class="mb-0"><?php echo $_SESSION['username'] ?></h6>
                         <span>Admin</span>
                     </div>
                 </div>
@@ -100,20 +93,21 @@ if (!isset($_SESSION['username'])) {
                     <a href="index.html" class="nav-item nav-link"><i class="fa fa-video me-2"></i>Surveilance Room</a>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Accounts Painel</a>
+                    <a href="AtuadoresESensores.php" class="nav-item nav-link"><i
+                            class="fa-solid fa-tower-broadcast me-2"></i>Control room</a>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="accountsPanel.php" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Accounts
+                        Panel</a>
                 </div>
             </nav>
         </div>
         <!-- Sidebar End -->
 
-
         <!-- Content Start -->
         <div class="content">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
-                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-                    <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
-                </a>
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
@@ -193,31 +187,31 @@ if (!isset($_SESSION['username'])) {
             </nav>
             <!-- Navbar End -->
 
-<?php 
-echo "<div class='alertMessage'>";
+            <?php
+            echo "<div class='alertMessage'>";
 
-if (isset($_SESSION["errorAlerts"]) && !empty($_SESSION["errorAlerts"])) {
-    foreach ($_SESSION["errorAlerts"] as $errorMessage) {
-        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-            <i class='fa fa-exclamation-circle me-2'></i>".$errorMessage."
+            if (isset($_SESSION["errorAlerts"]) && !empty($_SESSION["errorAlerts"])) {
+                foreach ($_SESSION["errorAlerts"] as $errorMessage) {
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+            <i class='fa fa-exclamation-circle me-2'></i>" . $errorMessage . "
             <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
          </div>";
-    }
-}
+                }
+            }
 
-if (isset($_SESSION["successAlerts"]) && !empty($_SESSION["successAlerts"])) {
-    foreach ($_SESSION["successAlerts"] as $successMessage) {
-        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-            <i class='fa fa-exclamation-circle me-2'></i>".$successMessage."
+            if (isset($_SESSION["successAlerts"]) && !empty($_SESSION["successAlerts"])) {
+                foreach ($_SESSION["successAlerts"] as $successMessage) {
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+            <i class='fa fa-exclamation-circle me-2'></i>" . $successMessage . "
             <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
          </div>";
-    }
-}
-echo "</div>";
-unset($_SESSION["errorAlerts"]); //limpar as listas das mensagens dos alerts
-unset($_SESSION["successAlerts"]);
+                }
+            }
+            echo "</div>";
+            unset($_SESSION["errorAlerts"]); //limpar as listas das mensagens dos alerts
+            unset($_SESSION["successAlerts"]);
 
-?>
+            ?>
 
             <!-- Recent Sales Start -->
             <div class="container-fluid pt-4 px-4">
@@ -228,7 +222,7 @@ unset($_SESSION["successAlerts"]);
                     </div>
 
                     <form action="editAcount.php" method="POST" enctype="multipart/form-data">
-                    <div class="row">
+                        <div class="row">
                             <div class="col-sm-6">
                                 <?php
 
@@ -240,7 +234,8 @@ unset($_SESSION["successAlerts"]);
                                 ?>
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">Alterar Foto de Perfil</label>
-                                    <input class="form-control bg-dark" type="file" id="formFile" accept="image/*" name="imagem">
+                                    <input class="form-control bg-dark" type="file" id="formFile" accept="image/*"
+                                        name="imagem">
                                 </div>
                             </div>
                             <script>
@@ -268,11 +263,11 @@ unset($_SESSION["successAlerts"]);
                                     '<h6 class="mb-4">Input Group</h6>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Username</span>
-                                    <input type="text" class="form-control" name="newUsername" placeholder="ex: person123" aria-label="Username" aria-describedby="basic-addon1" value="' . $_SESSION["username"] . '">
+                                    <input type="text" class="form-control" name="newUsername" placeholder="ex: person123" aria-label="Username" value="' . $_SESSION["username"] . '">
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Email</span>
-                                    <input type="email" class="form-control" name="newMail" placeholder="ex: example@my.ipleiria.pt" aria-label="Username" aria-describedby="basic-addon1" value="' . $_SESSION["mail"] . '">
+                                    <input type="email" class="form-control" name="newMail" placeholder="ex: example@my.ipleiria.pt" aria-label="Username" value="' . $_SESSION["mail"] . '">
                                 </div>'
                                     ?>
 
@@ -303,26 +298,28 @@ unset($_SESSION["successAlerts"]);
                     </div>
                     <!-- Footer End -->
                 </div>
-                <!-- Content End -->
-
-
-                <!-- Back to Top -->
-                <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
             </div>
+            <!-- Content End -->
 
-            <!-- JavaScript Libraries -->
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="lib/chart/chart.min.js"></script>
-            <script src="lib/easing/easing.min.js"></script>
-            <script src="lib/waypoints/waypoints.min.js"></script>
-            <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-            <script src="lib/tempusdominus/js/moment.min.js"></script>
-            <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-            <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-            <!-- Template Javascript -->
-            <script src="js/main.js"></script>
+            <!-- Back to Top -->
+            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/chart/chart.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
 </body>
 
 </html>

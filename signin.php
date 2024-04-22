@@ -1,11 +1,9 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>DarkPan - Bootstrap 5 Admin Template</title>
+    <title>SHADOW STRIKE - Signin</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -16,95 +14,89 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
-    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap"
+        rel="stylesheet">
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    
+
     <!-- Our css -->
     <link href="ourStyle.css" rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/6f6eae0546.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
 
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Spinner Start -->
-        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div id="spinner"
+            class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
         <!-- Spinner End -->
 
-<?php
-    session_start();
+        <?php
+        session_start();
 
-    if (isset($_GET['error'])) {
-        $error_message = $_GET['error'];
-        echo "<div class='alert alert-primary alert-dismissible fade show alertMessage' role='alert'>
-                <i class='fa fa-exclamation-circle me-2'></i>".$error_message."
+        if (isset($_GET['error'])) {
+            $error_message = $_GET['error'];
+            echo "<div class='alert alert-primary alert-dismissible fade show alertMessage' role='alert'>
+                <i class='fa fa-exclamation-circle me-2'></i>" . $error_message . "
                 <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
              </div>";
-    }
-    if (isset($_GET['Message'])) {
-        $message = $_GET['Message'];
-        echo "<div class='alert alert-success alert-dismissible fade show alertMessage' role='alert'>
-                <i class='fa fa-exclamation-circle me-2'></i>".$message."
+        }
+        if (isset($_GET['Message'])) {
+            $message = $_GET['Message'];
+            echo "<div class='alert alert-success alert-dismissible fade show alertMessage' role='alert'>
+                <i class='fa fa-exclamation-circle me-2'></i>" . $message . "
                 <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
              </div>";
-    }
-?>
+        }
+        ?>
+
         <!-- Sign In Start -->
-        
-       
-
-
         <div class="container-fluid">
             <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
                     <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <a href="index.html" class="">
-                                <h3 class="text-primary"> <img class="img.center" src="logos/LogoSemExplosões.png" width="50" height="50" /></i>  SHADOW STRIKE</h3>
+                                <h3 class="text-primary"> <img class="img.center" src="logos/LogoSemExplosões.png" alt="" width="50" height="50"> SHADOW STRIKE</h3>
                             </a>
                             <h3>Sign In</h3>
                         </div>
 
-                    <form action="login.php" method="POST">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" name="username">
-                            <label for="floatingInput">Username</label>
-                        </div>
-                        <div class="form-floating mb-4">
-                            <input type="password" class="form-control" id="floatingPassword" name="password">
-                            <label for="floatingPassword">Password</label>
-                        </div>
-                        <!-- <div class="d-flex align-items-center justify-content-between mb-4">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        <form action="login.php" method="POST">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput" name="username">
+                                <label for="floatingInput">Username</label>
                             </div>
-                            <a href="">Forgot Password</a>
-                        </div> -->
-                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4" onclick="audio.play">Sign In</button>
-                        <script type="text/JavaScript">
+                            <div class="form-floating mb-4">
+                                <input type="password" class="form-control" id="floatingPassword" name="password">
+                                <label for="floatingPassword">Password</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary py-3 w-100 mb-4" onclick="audio.play">Sign
+                                In</button>
+                            <script>
                             const audio = new Audio();
                             audio.src = "audio/Eagle.wav";                            
                         </script>
-                        <p class="text-center mb-0">Don't have an Account?<a href="signup.php">Sign Up</a></p>
-                    </form>
+                            <p class="text-center mb-0">Don't have an Account?<a href="signup.php">Sign Up</a></p>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -128,4 +120,3 @@
 </body>
 
 </html>
-

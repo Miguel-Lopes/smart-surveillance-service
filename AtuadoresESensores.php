@@ -37,7 +37,7 @@
 
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -251,7 +251,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary">SHADOW STRIKE</h3>
+                <h3 class="text-primary">SHADOW STRIKE</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -276,7 +276,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                     <a href="index.html" class="nav-item nav-link"><i class="fa fa-video me-2"></i>Surveilance Room</a>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="AtuadoresESensores.php" class="nav-item nav-link active"><i class="fa fa-video me-2"></i>Control room</a>
+                    <a href="AtuadoresESensores.php" class="nav-item nav-link active"><i class="fa-solid fa-tower-broadcast me-2"></i>Control room</a>
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="accountsPanel.php" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Accounts Panel</a>
@@ -289,9 +289,6 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
         <div class="content">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
-                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-                    <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
-                </a>
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
@@ -488,7 +485,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logMainDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoor" src="Icons/doorOpen.png" alt="Main door" width="30px" height="30px"> Main door status <?php echo $valor_Porta_Principal;?> | last updated: <?php echo $data_Porta_Principal; ?></a>
+                                    <a href="logMainDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoor" src="Icons/doorOpen.png" alt="Main door" width="30" height="30"> Main door status <?php echo $valor_Porta_Principal;?> | last updated: <?php echo $data_Porta_Principal; ?></a>
                                         <button onclick="changeButtonText(this); changeImageDoorMain();" type="button" class="btn btn-primary ms-2">Lock</button> 
                                     </div>
                                 </div>
@@ -497,7 +494,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logBackDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoorSecondary" src="Icons/doorOpen.png" alt="Back door" width="30px" height="30px"> Back door status <?php echo $valor_Porta_Traseira;?> | last updated: <?php echo $data_Porta_Traseira; ?></a>
+                                    <a href="logBackDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoorSecondary" src="Icons/doorOpen.png" alt="Back door" width="30" height="30"> Back door status <?php echo $valor_Porta_Traseira;?> | last updated: <?php echo $data_Porta_Traseira; ?></a>
                                         <button onclick="changeButtonText(this); changeImageDoorSecondary();" type="button" class="btn btn-primary ms-2">Lock</button> 
                                     </div>
                                 </div>
@@ -506,7 +503,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logBuzzer.php" class="nav-item nav-link active"><img id="imageToChangeBuzzer" src="Icons/buzzerOff.png" alt="Buzzer" width="30px" height="30px"> Buzzer status <?php echo $valor_Buzzer;?> | last updated: <?php echo $data_Buzzer; ?></a>
+                                    <a href="logBuzzer.php" class="nav-item nav-link active"><img id="imageToChangeBuzzer" src="Icons/buzzerOff.png" alt="Buzzer" width="30" height="30"> Buzzer status <?php echo $valor_Buzzer;?> | last updated: <?php echo $data_Buzzer; ?></a>
                                         <button onclick="changeButtonText(this); changeImageBuzzer();" type="button" class="btn btn-primary ms-2">On</button> 
                                     </div>
                                 </div>
@@ -515,7 +512,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logLedMain.php" class="nav-item nav-link active"><img id="imageToChangeLedMain" src="Icons/LedOff.png" alt="Main led" width="30px" height="30px"> Main led status status <?php echo $valor_led_Principal;?> | last updated: <?php echo $data_led_Principal; ?></a>
+                                    <a href="logLedMain.php" class="nav-item nav-link active"><img id="imageToChangeLedMain" src="Icons/LedOff.png" alt="Main led" width="30" height="30"> Main led status status <?php echo $valor_led_Principal;?> | last updated: <?php echo $data_led_Principal; ?></a>
                                         <button onclick="changeButtonText(this); changeImageLedMain();" type="button" class="btn btn-primary ms-2">On</button>
                                     </div>
                                 </div>
@@ -524,7 +521,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logLedSecondary.php" class="nav-item nav-link active"><img id="imageToChangeLedSecondary" src="Icons/LedOff.png" alt="Secondary led" width="30px" height="30px"> Back led status status <?php echo $valor_led_Traseiro;?> | last updated: <?php echo $data_led_Traseiro; ?></a>
+                                    <a href="logLedSecondary.php" class="nav-item nav-link active"><img id="imageToChangeLedSecondary" src="Icons/LedOff.png" alt="Secondary led" width="30" height="30"> Back led status status <?php echo $valor_led_Traseiro;?> | last updated: <?php echo $data_led_Traseiro; ?></a>
                                         <button onclick="changeButtonText(this); changeImageLedSecondary();" type="button" class="btn btn-primary ms-2">On</button> 
                                     </div>
                                 </div>
@@ -532,7 +529,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                         </div>
                     </div>
                 </div>
-            </div>
+        </div>
             <!-- Widgets End -->
 
 
@@ -552,13 +549,12 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                 </div>
             </div>
             <!-- Footer End -->
-        </div>
+
         <!-- Content End -->
 
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-    </div>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
