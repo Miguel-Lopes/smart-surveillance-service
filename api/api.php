@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         file_put_contents("sensores_atuadores/" . $_POST['nome'] . "/valor.txt", $_POST['valor']);
         file_put_contents("sensores_atuadores/" . $_POST['nome'] . "/nome.txt", $_POST['nome']);
         file_put_contents("sensores_atuadores/" . $_POST['nome'] . "/data.txt", $_POST['data']);
-        file_put_contents("sensores_atuadores/" . $_POST['nome'] . "/log.txt", $_POST['data'] . " " . $_POST['valor'] . PHP_EOL, FILE_APPEND);
+        file_put_contents("sensores_atuadores/" . $_POST['nome'] . "/log.txt",  $_POST['valor'] . ":#:" .$_POST['data'] .  PHP_EOL, FILE_APPEND);
         
         echo "Recebi um POST: " . $_POST['valor'];
         http_response_code(200); // OK
