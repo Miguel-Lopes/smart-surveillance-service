@@ -225,9 +225,12 @@ $nome_Humidade = file_get_contents("api/sensores_atuadores/SensorHumidade/nome.t
                     
                 <div class="col-sm-12">
                         <table class="table table-dark">
-                                <thead>
-                                    <tr><th>Log Humidity</th></tr>
-                                               </thead>
+                        <thead>
+                                    <tr>
+                                        <th>Valor</th>
+                                        <th>Data</th>
+                                    </tr>
+                                      </thead>
                                 <tbody>
                                 <?php 
                                     //vai buscar o conteudo do ficheiro
@@ -238,11 +241,11 @@ $nome_Humidade = file_get_contents("api/sensores_atuadores/SensorHumidade/nome.t
                                     $linhasInvertidas = array_reverse($linhas);
                                     // Exibe as últimas linhas
                                     foreach ($linhasInvertidas as $linha) {
-                                        list($data_Humidade, $valor_Humidade) = explode(":#:", $linha);
+                                        list($valor_Humidade, $data_Humidade) = explode(":#:", $linha);
 
                                         echo "<tr>
-                                        <td>".$data_Humidade."</td>
                                         <td>".$valor_Humidade."</td>
+                                        <td>".$data_Humidade."</td>
                                              </tr>" ;
                                     }
                                 ?>

@@ -228,9 +228,12 @@ $nome_Movimento = file_get_contents("api/sensores_atuadores/SensorMovimento/nome
                     
                 <div class="col-sm-12">
                         <table class="table table-dark">
-                                <thead>
-                                    <tr><th>Log movement</th></tr>
-                                               </thead>
+                        <thead>
+                                    <tr>
+                                        <th>Valor</th>
+                                        <th>Data</th>
+                                    </tr>
+                                      </thead>
                                 <tbody>
                                 <?php 
                                     //vai buscar o conteudo do ficheiro
@@ -241,12 +244,12 @@ $nome_Movimento = file_get_contents("api/sensores_atuadores/SensorMovimento/nome
                                     $linhasInvertidas = array_reverse($linhas);
                                     // Exibe as últimas linhas
                                     foreach ($linhasInvertidas as $linha) {
-                                        list($data_Movimento, $valor_Movimento) = explode(":#:", $linha);
+                                        list($valor_Movimento, $data_Movimento) = explode(":#:", $linha);
 
                                         echo "<tr>
-                                        <td>".$data_Movimento."</td>
                                         <td>".$valor_Movimento."</td>
-                                             </tr>" ;
+                                        <td>".$data_Movimento."</td>
+                                              </tr>" ;
                                     }
                                 ?>
                                 </tbody>

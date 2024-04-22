@@ -226,9 +226,12 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                     
                 <div class="col-sm-12">
                         <table class="table table-dark">
-                                <thead>
-                                    <tr><th>Log buzzer</th></tr>
-                                               </thead>
+                        <thead>
+                                    <tr>
+                                        <th>Valor</th>
+                                        <th>Data</th>
+                                    </tr>
+                                      </thead>
                                 <tbody>
                                 <?php 
                                     //vai buscar o conteudo do ficheiro
@@ -239,12 +242,12 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                     $linhasInvertidas = array_reverse($linhas);
                                     // Exibe as últimas linhas
                                     foreach ($linhasInvertidas as $linha) {
-                                        list($data_Porta_Principa, $valor_Buzzer) = explode(":#:", $linha);
+                                        list($valor_Buzzer, $data_Buzzer) = explode(":#:", $linha);
 
                                         echo "<tr>
-                                        <td>".$data_Buzzer."</td>
                                         <td>".$valor_Buzzer."</td>
-                                             </tr>" ;
+                                        <td>".$data_Buzzer."</td>
+                                              </tr>" ;
                                     }
                                 ?>
                                 </tbody>

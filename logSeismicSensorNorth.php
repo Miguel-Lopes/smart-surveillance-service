@@ -225,9 +225,12 @@ $nome_SensorSismicoNorte = file_get_contents("api/sensores_atuadores/SensorSismi
                     
                 <div class="col-sm-12">
                         <table class="table table-dark">
-                                <thead>
-                                    <tr><th>Log seismic sensor North</th></tr>
-                                               </thead>
+                        <thead>
+                                    <tr>
+                                        <th>Valor</th>
+                                        <th>Data</th>
+                                    </tr>
+                                      </thead>
                                 <tbody>
                                 <?php 
                                     //vai buscar o conteudo do ficheiro
@@ -238,11 +241,12 @@ $nome_SensorSismicoNorte = file_get_contents("api/sensores_atuadores/SensorSismi
                                     $linhasInvertidas = array_reverse($linhas);
                                     // Exibe as últimas linhas
                                     foreach ($linhasInvertidas as $linha) {
-                                        list($data_SensorSismicoNorte, $valor_SensorSismicoNorte) = explode(":#:", $linha);
+                                        list($valor_SensorSismicoNorte, $data_SensorSismicoNorte) = explode(":#:", $linha);
 
                                         echo "<tr>
-                                        <td>".$data_SensorSismicoNorte."</td>
                                         <td>".$valor_SensorSismicoNorte."</td>
+                                        <td>".$data_SensorSismicoNorte."</td>
+                                        
                                              </tr>" ;
                                     }
                                 ?>

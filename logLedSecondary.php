@@ -226,9 +226,12 @@ $nome_LedPortaTraseira = file_get_contents("api/sensores_atuadores/LedPortaTrase
                     
                 <div class="col-sm-12">
                         <table class="table table-dark">
-                                <thead>
-                                    <tr><th>Log secondary led</th></tr>
-                                               </thead>
+                        <thead>
+                                    <tr>
+                                        <th>Valor</th>
+                                        <th>Data</th>
+                                    </tr>
+                                      </thead>
                                 <tbody>
                                 <?php 
                                     //vai buscar o conteudo do ficheiro
@@ -239,11 +242,11 @@ $nome_LedPortaTraseira = file_get_contents("api/sensores_atuadores/LedPortaTrase
                                     $linhasInvertidas = array_reverse($linhas);
                                     // Exibe as últimas linhas
                                     foreach ($linhasInvertidas as $linha) {
-                                        list($data_Porta_Principa, $valor_LedPortaTraseira) = explode(":#:", $linha);
+                                        list($valor_LedPortaTraseira, $data_Porta_Principa, ) = explode(":#:", $linha);
 
                                         echo "<tr>
-                                        <td>".$data_LedPortaTraseira."</td>
                                         <td>".$valor_LedPortaTraseira."</td>
+                                        <td>".$data_LedPortaTraseira."</td>
                                              </tr>" ;
                                     }
                                 ?>

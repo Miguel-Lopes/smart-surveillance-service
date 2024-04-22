@@ -226,9 +226,12 @@ $nome_Porta_Principal = file_get_contents("api/sensores_atuadores/PortaPrincipal
                     
                 <div class="col-sm-12">
                         <table class="table table-dark">
-                                <thead>
-                                    <tr><th>Log main door</th></tr>
-                                               </thead>
+                        <thead>
+                                    <tr>
+                                        <th>Valor</th>
+                                        <th>Data</th>
+                                    </tr>
+                                      </thead>
                                 <tbody>
                                 <?php 
                                     //vai buscar o conteudo do ficheiro
@@ -239,12 +242,12 @@ $nome_Porta_Principal = file_get_contents("api/sensores_atuadores/PortaPrincipal
                                     $linhasInvertidas = array_reverse($linhas);
                                     // Exibe as últimas linhas
                                     foreach ($linhasInvertidas as $linha) {
-                                        list($data_Porta_Principa, $valor_Porta_Principal) = explode(":#:", $linha);
+                                        list($valor_Porta_Principal, $data_Porta_Principa) = explode(":#:", $linha);
 
                                         echo "<tr>
-                                        <td>".$data_Porta_Principal."</td>
-                                        <td>".$valor_Porta_Principal."</td>
-                                             </tr>" ;
+                                         <td>".$valor_Porta_Principal."</td>
+                                         <td>".$data_Porta_Principal."</td>
+                                              </tr>" ;
                                     }
                                 ?>
                                 </tbody>

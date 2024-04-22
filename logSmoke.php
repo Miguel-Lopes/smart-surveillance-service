@@ -229,8 +229,11 @@ $nome_fumo = file_get_contents("api/sensores_atuadores/SensorFumo/nome.txt");
                 <div class="col-sm-12">
                         <table class="table table-dark">
                                 <thead>
-                                    <tr><th>Log smoke</th></tr>
-                                               </thead>
+                                    <tr>
+                                        <th>Valor</th>
+                                        <th>Data</th>
+                                    </tr>
+                                      </thead>
                                 <tbody>
                                 <?php 
                                     //vai buscar o conteudo do ficheiro
@@ -241,11 +244,11 @@ $nome_fumo = file_get_contents("api/sensores_atuadores/SensorFumo/nome.txt");
                                     $linhasInvertidas = array_reverse($linhas);
                                     // Exibe as últimas linhas
                                     foreach ($linhasInvertidas as $linha) {
-                                        list($data_fumo, $valor_fumo) = explode(":#:", $linha);
+                                        list($valor_fumo, $data_fumo) = explode(":#:", $linha);
 
                                         echo "<tr>
-                                        <td>".$data_fumo."</td>
-                                        <td>".$valor_fumo."</td>
+                                         <td>".$valor_fumo."</td>
+                                         <td>".$data_fumo."</td>
                                              </tr>" ;
                                     }
                                 ?>
