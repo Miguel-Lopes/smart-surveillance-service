@@ -1,4 +1,6 @@
-<?php include 'auth_session.php'; ?>
+<?php include 'auth_session.php';
+      include 'get_devices.php'; ?>
+      
 <!DOCTYPE html>
 <html lang="en">
 
@@ -182,38 +184,25 @@
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-6 col-xl-3">
-                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-line fa-3x text-primary"></i>
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <img src="Icons/temperature.png" alt="Temperature"   
+                        width="50" 
+                        height="50">
                             <div class="ms-3">
-                                <p class="mb-2">Today Sale</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <a href="logTemperature.php" class="nav-item nav-link active">Temperature TESTE: <?php echo $devicesData['SensorTemperatura']['valor']; ?>º</a>
+                                <h6 class="mb-0">Last updated:  <?php echo $devicesData['SensorTemperatura']['data']; ?></h6>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-xl-3">
-                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <img src="Icons/humidity.png" alt="Humidity"   
+                        width="50" 
+                        height="50">
+
                             <div class="ms-3">
-                                <p class="mb-2">Total Sale</p>
-                                <h6 class="mb-0">$1234</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-area fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">Today Revenue</p>
-                                <h6 class="mb-0">$1234</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">Total Revenue</p>
-                                <h6 class="mb-0">$1234</h6>
+                            <a href="logHumidity.php" class="nav-item nav-link active">Humidity: <?php echo $devicesData['SensorHumidade']['valor']; ?>%</a>
+                                <h6 class="mb-0">Last updated: <?php echo $devicesData['SensorHumidade']['data']; ?></h6>
                             </div>
                         </div>
                     </div>
