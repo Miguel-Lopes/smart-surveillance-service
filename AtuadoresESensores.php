@@ -1,6 +1,4 @@
-<?php include 'auth_session.php';
-      include 'get_devices.php'; ?>
-      
+<?php include 'auth_session.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,10 +30,59 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <link href="ourStyle.css"  rel="stylesheet">
+    <link rel="stylesheet" href="ourStyle.css">
+    
+   
 </head>
 
 <body>
+<?php
+
+//----------------------------------------SENSORES & ATUADORES----------------------------------------------
+
+/**
+ * Fetches data for a given sensor or actuator from specific files.
+ *
+ * @param string $devicePath The base path for the device's data files.
+ * @return array Contains the value, data, log, and name of the device.
+ */
+function fetchDeviceData($devicePath) {
+    $data = [];
+    $data['valor'] = file_get_contents($devicePath . "/valor.txt");
+    $data['data'] = file_get_contents($devicePath . "/data.txt");
+    $data['log'] = file_get_contents($devicePath . "/log.txt");
+    $data['nome'] = file_get_contents($devicePath . "/nome.txt");
+
+    return $data;
+}
+
+// Device base paths
+$basePaths = [
+    "SensorTemperatura" => "api/sensores_atuadores/SensorTemperatura",
+    "SensorHumidade" => "api/sensores_atuadores/SensorHumidade",
+    "SensorFumo" => "api/sensores_atuadores/SensorFumo",
+    "SensorMovimento" => "api/sensores_atuadores/SensorMovimento",
+    "SensorPortaPrincipal" => "api/sensores_atuadores/SensorPortaPrincipal",
+    "SensorPortaTraseira" => "api/sensores_atuadores/SensorPortaTraseira",
+    "SensorSismicoSul" => "api/sensores_atuadores/SensorSismicoSul",
+    "SensorSismicoNorte" => "api/sensores_atuadores/SensorSismicoNorte",
+    "SensorSismicoOeste" => "api/sensores_atuadores/SensorSismicoOeste",
+    "SensorSismicoEste" => "api/sensores_atuadores/SensorSismicoEste",
+    "PortaPrincipal" => "api/sensores_atuadores/PortaPrincipal",
+    "PortaTraseira" => "api/sensores_atuadores/PortaTraseira",
+    "LedPortaPrincipal" => "api/sensores_atuadores/LedPortaPrincipal",
+    "LedPortaTraseira" => "api/sensores_atuadores/LedPortaTraseira",
+    "Buzzer" => "api/sensores_atuadores/Buzzer"
+];
+
+// Fetch all devices data
+$devicesData = [];
+foreach ($basePaths as $name => $path) {
+    $devicesData[$name] = fetchDeviceData($path);
+}
+
+// Now $devicesData contains all the information about the sensors and actuators.
+?>
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -50,7 +97,7 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
-                <h3 class="text-primary">SHADOW STRIKE</h3>
+                    <h3 class="text-primary">SHADOW STRIKE</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -69,13 +116,13 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="dashboard.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="dashboard.php" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="index.html" class="nav-item nav-link"><i class="fa fa-video me-2"></i>Surveilance Room</a>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="AtuadoresESensores.php" class="nav-item nav-link"><i class="fa fa-video me-2"></i>Control room</a>
+                    <a href="AtuadoresESensores.php" class="nav-item nav-link active"><i class="fa fa-video me-2"></i>Control room</a>
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="accountsPanel.php" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Accounts Panel</a>
@@ -83,7 +130,6 @@
             </nav>
         </div>
         <!-- Sidebar End -->
-
 
         <!-- Content Start -->
         <div class="content">
@@ -115,7 +161,7 @@
                                 <div class="d-flex align-items-center">
                                     <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                                     <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <h6 class="fw-normal mb-0">Jon send you a message</h6>
                                         <small>15 minutes ago</small>
                                     </div>
                                 </div>
@@ -125,7 +171,7 @@
                                 <div class="d-flex align-items-center">
                                     <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                                     <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <h6 class="fw-normal mb-0">Jon sent you a message</h6>
                                         <small>15 minutes ago</small>
                                     </div>
                                 </div>
@@ -184,18 +230,18 @@
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-6 col-xl-3">
-                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                         <img src="Icons/temperature.png" alt="Temperature"   
                         width="50" 
                         height="50">
                             <div class="ms-3">
-                                <a href="logTemperature.php" class="nav-item nav-link active">Temperature TESTE: <?php echo $devicesData['SensorTemperatura']['valor']; ?>º</a>
+                                <a href="logTemperature.php" class="nav-item nav-link active">Temperature: <?php echo $devicesData['SensorTemperatura']['valor']; ?>º</a>
                                 <h6 class="mb-0">Last updated:  <?php echo $devicesData['SensorTemperatura']['data']; ?></h6>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-xl-3">
-                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                         <img src="Icons/humidity.png" alt="Humidity"   
                         width="50" 
                         height="50">
@@ -206,6 +252,72 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <img src="Icons/smoke.png" alt="Smoke"   
+                        width="50" 
+                        height="50"     >
+                            <div class="ms-3">
+                            <a href="logSmoke.php" class="nav-item nav-link active">Smoke: <?php echo $devicesData['SensorFumo']['valor']; ?>%</a>
+                                <h6 class="mb-0">Last updated: <?php echo $devicesData['SensorFumo']['data']; ?></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <img src="Icons/movement.png" alt="Movement"   
+                        width="50" 
+                        height="50"     >
+                            <div class="ms-3">
+                            <a href="logMovement.php" class="nav-item nav-link active">Movement: <?php echo $devicesData['SensorMovimento']['valor']; ?></a>
+                                <h6 class="mb-0">Last updated: <?php echo $devicesData['SensorMovimento']['data']; ?></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <img src="Icons/east.png" alt="East seismic sensor"   
+                        width="50" 
+                        height="50">
+                            <div class="ms-3">
+                                <a href="logSeismicSensorEast.php" class="nav-item nav-link active">Seismic sensor east: <?php echo $devicesData['SensorSismicoEste']['valor']; ?></a>
+                                <h6 class="mb-0">Last updated: <?php echo $devicesData['SensorSismicoEste']['data']; ?></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <img src="Icons/north.png" alt="North seismic sensor"   
+                        width="50" 
+                        height="50">
+                            <div class="ms-3">
+                            <a href="logSeismicSensorNorth.php" class="nav-item nav-link active">Seismic sensor north: <?php echo $devicesData['SensorSismicoNorte']['valor']; ?></a>
+                                <h6 class="mb-0">Last updated: <?php echo $devicesData['SensorSismicoNorte']['data']; ?></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <img src="Icons/west.png" alt="West seismic sensor"
+                        width="50" 
+                        height="50"     >
+                            <div class="ms-3">
+                            <a href="logSeismicSensorWest.php" class="nav-item nav-link active">Seismic sensor west: <?php echo $devicesData['SensorSismicoOeste']['valor']; ?></a>
+                                <h6 class="mb-0">Last updated: <?php echo $devicesData['SensorSismicoNorte']['data']; ?></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <img src="Icons/south.png" alt="South seismic sensor"   
+                        width="50" 
+                        height="50"     >
+                            <div class="ms-3">
+                            <a href="logSeismicSensorSouth.php" class="nav-item nav-link active">Seismic sensor south: <?php echo $devicesData['SensorSismicoSul']['valor']; ?></a>
+                                <h6 class="mb-0">Last updated: <?php echo $devicesData['SensorSismicoSul']['data']; ?></h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- Sale & Revenue End -->
@@ -213,30 +325,17 @@
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     
-                    <div class="col-sm-12 col-md-6 col-xl-4">
-                        <div class="h-100 bg-secondary rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Calendário</h6>
-                            </div>
-                            <div id="calender"></div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-xl-8">
-                        <div class="h-100 bg-secondary rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Tarefas Gerais</h6>
-                                <a href="">Show All</a>
-                            </div>
+             
                             <div class="d-flex mb-2">
-                                <input class="form-control bg-dark border-0" type="text" placeholder="Enter task">
-                                <button type="button" class="btn btn-primary ms-2">Add</button>
+                                <input class="form-control bg-dark border-0" type="text" placeholder="Actuators">
+                                <button class="buttonImportant" onclick="alert('Facility is now under lockdown!');"><span>Lockdown</span></button> 
                             </div>
                             <div class="d-flex align-items-center border-bottom py-2">
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span>Short task goes here...</span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                    <a href="logMainDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoor" src="Icons/doorOpen.png" alt="Main door" width="30px" height="30px"> Main door status: <?php echo $devicesData['PortaPrincipal']['valor']; ?> | last updated: <?php echo $devicesData['PortaPrincipal']['data']; ?></a>
+                                        <button onclick="changeButtonText(this); changeImage('imageToChangeDoor', 'doorMain');" type="button" class="btn btn-primary ms-2">Lock</button> 
                                     </div>
                                 </div>
                             </div>
@@ -244,17 +343,8 @@
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span>Short task goes here...</span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-2">
-                                <input class="form-check-input m-0" type="checkbox" checked>
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span><del>Short task goes here...</del></span>
-                                        <button class="btn btn-sm text-primary"><i class="fa fa-times"></i></button>
+                                    <a href="logBackDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoorSecondary" src="Icons/doorClosed.png" alt="Back door" width="30px" height="30px"> Back door status: <?php echo $devicesData['PortaTraseira']['valor']; ?> | last updated: <?php echo $devicesData['PortaTraseira']['data']; ?></a>
+                                        <button onclick="changeButtonText(this); changeImage('imageToChangeDoorSecondary', 'doorSecondary');" type="button" class="btn btn-primary ms-2">Lock</button> 
                                     </div>
                                 </div>
                             </div>
@@ -262,17 +352,26 @@
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span>Short task goes here...</span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                    <a href="logBuzzer.php" class="nav-item nav-link active"><img id="imageToChangeBuzzer" src="Icons/buzzerOff.png" alt="Buzzer" width="30px" height="30px"> Buzzer status: <?php echo $devicesData['Buzzer']['valor']; ?> | last updated: <?php echo $devicesData['Buzzer']['data']; ?></a>
+                                        <button onclick="changeButtonText(this); changeImage('imageToChangeBuzzer', 'buzzer');" type="button" class="btn btn-primary ms-2">On</button> 
                                     </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-2">
+                                <input class="form-check-input m-0" type="checkbox">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                    <a href="logLedMain.php" class="nav-item nav-link active"><img id="imageToChangeLedMain" src="Icons/LedOff.png" alt="Main led" width="30px" height="30px"> Main led status status: <?php echo $devicesData['LedPortaPrincipal']['valor']; ?> | last updated: <?php echo $devicesData['LedPortaPrincipal']['data']; ?></a>
+                                        <button onclick="changeButtonText(this); changeImage('imageToChangeLedMain', 'ledMain');" type="button" class="btn btn-primary ms-2">On</button>
+                                    </div>  
                                 </div>
                             </div>
                             <div class="d-flex align-items-center pt-2">
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span>Short task goes here...</span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                    <a href="logLedSecondary.php" class="nav-item nav-link active"><img id="imageToChangeLedSecondary" src="Icons/LedOff.png" alt="Secondary led" width="30px" height="30px"> Back led status status <?php echo $devicesData['LedPortaTraseira']['valor']; ?> | last updated: <?php echo $devicesData['LedPortaTraseira']['data']; ?></a>
+                                        <button onclick="changeButtonText(this); changeImage('imageToChangeLedSecondary', 'ledSecondary');" type="button" class="btn btn-primary ms-2">On</button> 
                                     </div>
                                 </div>
                             </div>
@@ -319,7 +418,57 @@
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js"></script> 
+    
+    <!-- Function to make icons change when button is pressed-->
+    <script>
+var images = {
+    doorMain: ["Icons/doorOpen.png", "Icons/doorClosed.png"],
+    doorSecondary: [ "Icons/doorClosed.png", "Icons/doorOpen.png"],
+    buzzer: ["Icons/buzzerOff.png", "Icons/buzzer.png"],
+    ledMain: ["Icons/LedOff.png", "Icons/LedOn.png"],
+    ledSecondary: ["Icons/LedOff.png", "Icons/LedOn.png"],
+};
+
+var indices = {
+    doorMain: 0,
+    doorSecondary: 0,
+    buzzer: 0,
+    ledMain: 0,
+    ledSecondary: 0
+};
+
+function changeImage(elementId, type) {
+    indices[type] = (indices[type] + 1) % images[type].length;
+    document.getElementById(elementId).src = images[type][indices[type]];
+}
+
+function Lockdown() {
+    changeImageBuzzer();
+    changeImageDoorMain();
+    changeImageDoorSecondary();
+    changeImageLedMain();
+    changeImageLedSecondary();
+
+ //Fazer com que os botões mudem todos de estado   
+}
+
+
+
+function changeButtonText(button) {
+    if (button.innerHTML == "Off") {
+        button.innerHTML = "On";
+    } else if(button.innerHTML == "On") {
+        button.innerHTML = "Off";
+    } else if(button.innerHTML == "Lock") {
+        button.innerHTML = "Unlock";
+    }else {
+        button.innerHTML = "Lock";
+    }
+
+}
+</script>
+
 </body>
 
 </html>
