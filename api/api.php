@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 } elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (isset($_GET['nome'])) {
-        $path = "sensores_atuadores/" . $_GET['nome'] . "/valor.txt";
+        $path = "sensores_atuadores/".$_GET['nome']."/valor.txt";
         if (file_exists($path)) {
             echo file_get_contents($path);
             http_response_code(200); // OK
@@ -34,4 +34,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Method Not Allowed";
     http_response_code(405); // Method Not Allowed
 }
-?>
