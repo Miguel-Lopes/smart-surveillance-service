@@ -48,6 +48,8 @@
     
     <script src="https://kit.fontawesome.com/6f6eae0546.js" crossorigin="anonymous"></script>
     <script>
+
+
 var imagesDoor = [
     "Icons/doorOpen.png",
     "Icons/doorClosed.png",
@@ -118,19 +120,23 @@ function Lockdown() {
 }
 
 
-
-function changeButtonText(button) {
-    if (button.innerHTML == "Off") {
-        button.innerHTML = "On";
-    } else if(button.innerHTML == "On") {
-        button.innerHTML = "Off";
-    } else if(button.innerHTML == "Lock") {
-        button.innerHTML = "Unlock";
+//Esta função muda o texto nos butões 
+function changeButtonTextOffOn(valor, submit) {
+    if (valor == "0") {
+        submit.innerHTML = "On";
     }else {
-        button.innerHTML = "Lock";
+        submit.innerHTML = "Off";
     }
-
 }
+
+function changeButtonTextLockUnlock(valor, submit) {
+    if (valor == "0") {
+        submit.innerHTML = "Lock";
+    }else {
+        submit.innerHTML = "Unlock";
+    }
+}
+
 </script>
 
 </head>
@@ -206,6 +212,7 @@ $nome_SensorSismicoEste = file_get_contents("api/sensores_atuadores/SensorSismic
 
 //----------------------------------------ATUADORES----------------------------------------------  
 //Atuadores para abrir e fechar as portas
+$Porta_Principal = file_get_contents("api/sensores_atuadores/PortaPrincipal");
 $valor_Porta_Principal = file_get_contents("api/sensores_atuadores/PortaPrincipal/valor.txt");
 $data_Porta_Principal = file_get_contents("api/sensores_atuadores/PortaPrincipal/data.txt");
 $log_Porta_Principal = file_get_contents("api/sensores_atuadores/PortaPrincipal/log.txt");
@@ -487,17 +494,39 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logMainDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoor" src="Icons/doorOpen.png" alt="Main door" width="30" height="30"> Main door status <?php echo $valor_Porta_Principal;?> | last updated: <?php echo $data_Porta_Principal; ?></a>
-                                        <button onclick="changeButtonText(this); changeImageDoorMain();" type="button" class="btn btn-primary ms-2">Lock</button> 
-                                    </div>
+                                        
+                                    <a href="logMainDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoor" src="Icons/doorClosed.png" alt="Main door" width="30" height="30"> Main door status <?php echo ($valor_Porta_Principal === '0') ? 'Open' : 'Closed'; ?> | last updated: <?php echo $data_Porta_Principal; ?></a>   
+                                    <button onclick="changeButtonText(this); changeImageDoorMain();" type="button" class="btn btn-primary ms-2">Lock</button> 
+                                    
+                                    <form method="POST" action="processMainDoor.php">
+                                    <button type="submit" name="action" value="toggle" class="btn btn-primary ms-2">Interact</button>
+                                    </form>
+
+                                    <script>  
+                                      if ($valor_Porta_Principal == '0') {
+                                            document.getElementById('imageToChangeDoor').src = "Icons/doorOpen.png";
+                                        } else {
+                                             
+                                            document.getElementById('imageToChangeDoor').src = "Icons/doorClosed.png";
+                                        }
+                                               
+                                        </script>
+
+                                </div>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center border-bottom py-2">
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logBackDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoorSecondary" src="Icons/doorOpen.png" alt="Back door" width="30" height="30"> Back door status <?php echo $valor_Porta_Traseira;?> | last updated: <?php echo $data_Porta_Traseira; ?></a>
-                                        <button onclick="changeButtonText(this); changeImageDoorSecondary();" type="button" class="btn btn-primary ms-2">Lock</button> 
+                                    <a href="logBackDoor.php" class="nav-item nav-link active"><img id="imageToChangeDoorSecondary" src="Icons/doorClosed.png" alt="Back door" width="30" height="30"> Back door status <?php echo ($valor_Porta_Traseira === '0') ? 'Open' : 'Closed'; ?> | last updated: <?php echo $data_Porta_Traseira; ?></a>
+                                        <button onclick="changeButtonText(this); changeImageDoorSecondary(); switchbinaryvalues($valor_Porta_Traseira, getCurrentValue($valor_Porta_Traseira));" type="button" class="btn btn-primary ms-2">Lock</button> 
+                                    
+                                        <form method="POST" action="processBackDoor.php">
+                                    <button type="submit" name="action" value="toggle" class="btn btn-primary ms-2">Interact</button>
+                                    </form>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -506,7 +535,12 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
                                     <a href="logBuzzer.php" class="nav-item nav-link active"><img id="imageToChangeBuzzer" src="Icons/buzzerOff.png" alt="Buzzer" width="30" height="30"> Buzzer status <?php echo $valor_Buzzer;?> | last updated: <?php echo $data_Buzzer; ?></a>
-                                        <button onclick="changeButtonText(this); changeImageBuzzer();" type="button" class="btn btn-primary ms-2">On</button> 
+                                        <button onclick="changeButtonText(this); changeImageBuzzer(); switchbinaryvalues($valor_Buzzer, getCurrentValue($valor_Buzzer));" type="button" class="btn btn-primary ms-2">On</button> 
+
+                                        <form method="POST" action="processBuzzer.php">
+                                    <button type="submit" name="action" value="toggle" class="btn btn-primary ms-2">Interact</button>
+                                    </form>
+
                                     </div>
                                 </div>
                             </div>
@@ -515,7 +549,12 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
                                     <a href="logLedMain.php" class="nav-item nav-link active"><img id="imageToChangeLedMain" src="Icons/LedOff.png" alt="Main led" width="30" height="30"> Main led status status <?php echo $valor_led_Principal;?> | last updated: <?php echo $data_led_Principal; ?></a>
-                                        <button onclick="changeButtonText(this); changeImageLedMain();" type="button" class="btn btn-primary ms-2">On</button>
+                                        <button onclick="changeButtonText(this); changeImageLedMain(); switchbinaryvalues($valor_led_Principal, getCurrentValue($valor_led_Principal));" type="button" class="btn btn-primary ms-2">On</button>
+                                                                        
+                                        <form method="POST" action="processMainDoorLED.php">
+                                    <button type="submit" name="action" value="toggle" class="btn btn-primary ms-2">Interact</button>
+                                    </form>
+
                                     </div>
                                 </div>
                             </div>
@@ -524,7 +563,12 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
                                     <a href="logLedSecondary.php" class="nav-item nav-link active"><img id="imageToChangeLedSecondary" src="Icons/LedOff.png" alt="Secondary led" width="30" height="30"> Back led status status <?php echo $valor_led_Traseiro;?> | last updated: <?php echo $data_led_Traseiro; ?></a>
-                                        <button onclick="changeButtonText(this); changeImageLedSecondary();" type="button" class="btn btn-primary ms-2">On</button> 
+                                        <button onclick="changeButtonText(this); changeImageLedSecondary(); switchbinaryvalues($valor_led_Traseiro, getCurrentValue($valor_led_Traseiro));" type="button" class="btn btn-primary ms-2">On</button> 
+                                   
+                                        <form method="POST" action="processBackDoorLED.php">
+                                    <button type="submit" name="action" value="toggle" class="btn btn-primary ms-2">Interact</button>
+                                    </form>
+                                   
                                     </div>
                                 </div>
                             </div>
