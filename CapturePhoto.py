@@ -3,7 +3,9 @@ import requests
 import time
 from datetime import datetime
 import sys
-from threading import Thread
+from threading import Thread, Lock
+
+camera_lock = Lock()
 
 def sendImage():
     urlPOST = 'http://iot.dei.estg.ipleiria.pt/ti/g130/smart-surveillance-service/api/upload.php'  # URL da API
@@ -28,7 +30,7 @@ def sendImage():
 
 
 def captureImage():
-    urlGET = 'http://iot.dei.estg.ipleiria.pt/ti/g130/smart-surveillance-service/api/api.php?nome=captura'  # URL da API para o pedido GET
+    urlGET = 'http://iot.dei.estg.ipleiria.pt/ti/g130/smart-surveillance-service/api/api.php?nome=Buzzer'  # URL da API para o pedido GET
 
     # Pedido GET
     response = requests.get(urlGET)
@@ -41,8 +43,8 @@ def captureImage():
         dataFormatada = data.strftime('%d/%m/%Y %H:%M:%S') # Coloca a data guardada no formato DD/MM/YYYY H:M:S
         print("Data: ", dataFormatada)
 
-        # Se a resposta da API para a captura for "on" é feita a captura de imagem e chamada a função sendImage() para enviar a imagem para a API
-        if status == "on":
+        # Se a resposta da API para o estado do buzzer for "on" é feita a captura de imagem e chamada a função sendImage() para enviar a imagem para a API.
+        if status == "1":
             print("A captura de imagens ativa! A tirar a fotografia...")
             # Liga a câmara (0 é a predefinida do PC)
             cap = cv2.VideoCapture(0)
@@ -80,7 +82,6 @@ def captureImage():
         print('Não foi possível determinar se a captura de imagens está ativa ou inativa. Código de resposta HTTP:', response.status_code)
     print() 
 
-# define the countdown func.
 def countdown(t):
     
     while t:
@@ -91,14 +92,20 @@ def countdown(t):
         t -= 1
     print()
 
-# Código principal
-while 1 == 1:
-    # captureImage() # Função a ser chamada caso não seja utilizado as Threads
-    print()
-    # Para implementar várias funções ao mesmo tempo no python sem esperar que as que foram chamadas terminem podemos utilizar o Threads, fazendo assim esse código preparado para funções futuras
-    t1 = Thread(target=captureImage()) # Cria a thread 1
-    t1.start() # Inicia a thread 1
-    print("--------------------------------------------------------------------------------------------------------------")
-    print("Tempo até a próxima tentativa:")
-    countdown(10)
-    time.sleep(1) # Dá um delay de 5 segundos para a função não estar a ser chamada constantemente
+
+def main():
+    while True:
+        try:
+            print()
+            # Correção: Passar a função como referência sem chamá-la imediatamente
+            t1 = Thread(target=captureImage)  
+            t1.start()  # Inicia a thread
+
+            print("--------------------------------------------------------------------------------------------------------------")
+            print("Tempo até a próxima tentativa:")
+            countdown(10)
+            time.sleep(5)  # Dá um delay de 5 segundos
+
+        except KeyboardInterrupt: #Usar  ctrl + C para interromper manualmente o programa
+            print('\nO programa foi interrompido pelo usuário.')
+            break  # Sai do loop

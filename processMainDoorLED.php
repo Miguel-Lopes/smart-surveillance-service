@@ -10,7 +10,6 @@ function getCurrentValue($filePath) {
         return "0"; // Valor padrão se o arquivo não existir
     }
 }
-
 function switchBinaryValues($filePath) {
     $currentValue = getCurrentValue($filePath);
     $newValue = ($currentValue == "0") ? "1" : "0";

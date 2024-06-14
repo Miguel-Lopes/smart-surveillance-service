@@ -534,7 +534,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logBuzzer.php" class="nav-item nav-link active"><img id="imageToChangeBuzzer" src="Icons/buzzerOff.png" alt="Buzzer" width="30" height="30"> Buzzer status <?php echo $valor_Buzzer;?> | last updated: <?php echo $data_Buzzer; ?></a>
+                                    <a href="logBuzzer.php" class="nav-item nav-link active"><img id="imageToChangeBuzzer" src="Icons/buzzerOff.png" alt="Buzzer" width="30" height="30"> Buzzer status <?php echo ($valor_Buzzer === '0') ? 'Off' : 'Ringing'; ?>  | last updated: <?php echo $data_Buzzer; ?></a>
                                         <button onclick="changeButtonText(this); changeImageBuzzer(); switchbinaryvalues($valor_Buzzer, getCurrentValue($valor_Buzzer));" type="button" class="btn btn-primary ms-2">On</button> 
 
                                         <form method="POST" action="processBuzzer.php">
@@ -548,7 +548,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logLedMain.php" class="nav-item nav-link active"><img id="imageToChangeLedMain" src="Icons/LedOff.png" alt="Main led" width="30" height="30"> Main led status status <?php echo $valor_led_Principal;?> | last updated: <?php echo $data_led_Principal; ?></a>
+                                    <a href="logLedMain.php" class="nav-item nav-link active"><img id="imageToChangeLedMain" src="Icons/LedOff.png" alt="Main led" width="30" height="30"> Main led status status <?php echo ($valor_led_Principal === '0') ? 'Off' : 'On'; ?>  | last updated: <?php echo $data_led_Principal; ?></a>
                                         <button onclick="changeButtonText(this); changeImageLedMain(); switchbinaryvalues($valor_led_Principal, getCurrentValue($valor_led_Principal));" type="button" class="btn btn-primary ms-2">On</button>
                                                                         
                                         <form method="POST" action="processMainDoorLED.php">
@@ -562,7 +562,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <a href="logLedSecondary.php" class="nav-item nav-link active"><img id="imageToChangeLedSecondary" src="Icons/LedOff.png" alt="Secondary led" width="30" height="30"> Back led status status <?php echo $valor_led_Traseiro;?> | last updated: <?php echo $data_led_Traseiro; ?></a>
+                                    <a href="logLedSecondary.php" class="nav-item nav-link active"><img id="imageToChangeLedSecondary" src="Icons/LedOff.png" alt="Secondary led" width="30" height="30"> Back led status status <?php echo ($valor_led_Principal === '0') ? 'Off' : 'On'; ?> | last updated: <?php echo $data_led_Traseiro; ?></a>
                                         <button onclick="changeButtonText(this); changeImageLedSecondary(); switchbinaryvalues($valor_led_Traseiro, getCurrentValue($valor_led_Traseiro));" type="button" class="btn btn-primary ms-2">On</button> 
                                    
                                         <form method="POST" action="processBackDoorLED.php">
