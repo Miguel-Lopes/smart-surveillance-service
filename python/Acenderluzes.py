@@ -1,7 +1,7 @@
 import time 
 import requests
 import RPi.GPIO as GPIO 
-from post2api.py import post2API
+
 
 channel_led = 5 
 GPIO.setmode(GPIO.BCM)
@@ -24,11 +24,11 @@ while True:
                 #print("Vou ligar o LED do rpi")
                 print("Vou ligar as luzes de temperatura")
                 acender_led(channel_led)
-                #post2API("Sensor1",1)
+               
             else:
                 print("Vou desligar as luzes de temperatura")
                 apagar_led(channel_led)
-                #post2API("Sensor1",0)
+                
         else:
             print(f"Erro ao realizar solicitacao: {luzes.status_code}")
         time.sleep(5)

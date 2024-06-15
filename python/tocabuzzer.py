@@ -22,11 +22,11 @@ while True:
             if int(som) == 1:
                 print("Vou ligar a campainha")
                 ativar_buzzer(channel_buzzer)
-                #post2API("Sensor1",1)
+                
             else:
                 print("Vou desligar a campainha")
                 desativar_buzzer(channel_buzzer)
-                #post2API("Sensor1",0)
+                
         else:
             print(f"Erro ao realizar solicitacao: {buzzer.status_code}")
         time.sleep(5)
