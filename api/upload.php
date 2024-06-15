@@ -27,9 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Verifica a extensão do arquivo
-        $allowedfileExtensions = array('jpg', 'jpeg', 'png');
+        $allowedfileExtensions = array('jpg', 'png');
         if (!in_array($fileExtension, $allowedfileExtensions)) {
-            echo json_encode(['error' => 'File type not allowed. Only .jpg .jpeg and .png are accepted.']);
+            echo json_encode(['error' => 'File type not allowed. Only .jpg and .png are accepted.']);
             http_response_code(400); // Bad Request
             exit();
         }
