@@ -200,49 +200,31 @@ if (!isset($_SESSION['username'])) {
             <!-- Navbar End -->
 
 
-            <!-- Sale & Revenue Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-6 col-xl-3">
+            <!-- Inicio sensores--><div class="col-sm-6 col-xl-3">
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-line fa-3x text-primary"></i>
+                        <img src="Icons/temperature.png" alt="Temperature"   
+                        width="50" 
+                        height="50">
                             <div class="ms-3">
-                                <p class="mb-2">Today Sale</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <a href="logTemperature.php" class="nav-item nav-link active">Temperature: <?php echo $valor_temperatura; ?>º</a>
+                                <h6 class="mb-0">Last updated: <?php echo $data_temperatura; ?></h6>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                        <img src="Icons/humidity.png" alt="Humidity"   
+                        width="50" 
+                        height="50">
+
                             <div class="ms-3">
-                                <p class="mb-2">Total Sale</p>
-                                <h6 class="mb-0">$1234</h6>
+                            <a href="logHumidity.php" class="nav-item nav-link active">Humidity: <?php echo $valor_humidade; ?>%</a>
+                                <h6 class="mb-0">Last updated: <?php echo $data_humidade; ?></h6>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-area fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">Today Revenue</p>
-                                <h6 class="mb-0">$1234</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">Total Revenue</p>
-                                <h6 class="mb-0">$1234</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Sale & Revenue End -->
-            <!-- Widgets Start -->
+            <!-- Fim sensores -->
+            <!-- Widgets inicio -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
 
@@ -313,7 +295,7 @@ if (!isset($_SESSION['username'])) {
                     </div>
                 </div>
             </div>
-            <!-- Widgets End -->
+            <!-- Widgets fim -->
 
 
             <!-- Footer Start -->
