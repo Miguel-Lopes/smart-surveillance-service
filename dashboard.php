@@ -47,6 +47,23 @@ if (!isset($_SESSION['username'])) {
     <link rel="stylesheet" href="ourStyle.css">
 
     <script src="https://kit.fontawesome.com/6f6eae0546.js" crossorigin="anonymous"></script>
+
+
+<?php
+    //Sensor de temperatura
+$valor_temperatura = file_get_contents("api/sensores_atuadores/SensorTemperatura/valor.txt");
+$data_temperatura = file_get_contents("api/sensores_atuadores/SensorTemperatura/data.txt");
+$log_temperatura = file_get_contents("api/sensores_atuadores/SensorTemperatura/log.txt");
+$nome_temperatura = file_get_contents("api/sensores_atuadores/SensorTemperatura/nome.txt");
+
+
+//Sensor de humidade
+$valor_humidade = file_get_contents("api/sensores_atuadores/SensorHumidade/valor.txt");
+$data_humidade = file_get_contents("api/sensores_atuadores/SensorHumidade/data.txt");
+$log_humidade = file_get_contents("api/sensores_atuadores/SensorHumidade/log.txt");
+$nome_humidade = file_get_contents("api/sensores_atuadores/SensorHumidade/nome.txt");
+
+?>
 </head>
 
 <body>
