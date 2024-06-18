@@ -97,7 +97,7 @@ if (!isset($_SESSION['username'])) {
                     <a href="AtuadoresESensores.php" class="nav-item nav-link"><i class="fa-solid fa-tower-broadcast me-2"></i>Control room</a>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="accountsPanel.html" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Accounts
+                    <a href="accountsPanel.php" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Accounts
                         Panel</a>
                 </div>
             </nav>

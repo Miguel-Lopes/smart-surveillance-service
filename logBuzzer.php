@@ -102,7 +102,7 @@ $nome_Buzzer = file_get_contents("api/sensores_atuadores/Buzzer/nome.txt");
                     <a href="AtuadoresESensores.php" class="nav-item nav-link active"><i class="fa fa-video me-2"></i>Control room</a>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="accountsPanel.html" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Accounts Panel</a>
+                    <a href="accountsPanel.php" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Accounts Panel</a>
                 </div>
             </nav>
         </div>

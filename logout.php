@@ -13,4 +13,3 @@ file_put_contents("credentials/" . $_SESSION["username"] . "/historico.txt", $hi
 session_destroy();
 header("Location: signin.php");
 exit();
-?>
